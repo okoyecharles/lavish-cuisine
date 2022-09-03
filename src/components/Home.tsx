@@ -18,7 +18,7 @@ const Home: React.FC = () => {
       dispatch(fetchCategoryNames());
       setCategoryNamesLoaded(true);
     }
-    if (categories.length && !categoriesLoaded) {
+    if (categories.length && !categoriesLoaded && !categories[0].meals) {
       console.log(categories);
       dispatch(loadCategories(categories));
       setCategoriesLoaded(true);

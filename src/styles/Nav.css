@@ -1,0 +1,22 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 0 0.5em #d3d3d3;
+  background: #fff;
+  z-index: 100;
+}
+
+.nav__logo, .nav__Links {
+  display: flex;
+  align-items: center;
+  gap: 1em
+}
+
+.nav__logoImg {
+  width: 2.5em;
+}
+
