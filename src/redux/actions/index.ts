@@ -43,9 +43,7 @@ export const loadCategories = createAsyncThunk(
   }
 )
 
-
-// categories => loadcategories => dispatch to store;
-
-// {name: 'beef' meals: [...]}
-
-// [number, string][]
+// Set categories loaded state to true UPDATE_CATEGORIES_LOADED
+export const updateCategoriesLoaded = () => ({
+  type: actionType.UPDATE_CATEGORIES_LOADED,
+})
