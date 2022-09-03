@@ -9,14 +9,22 @@ export interface Category {
   meals: Meal[];
 }
 
+export interface Ingredient {
+  id: string;
+  name: string;
+  description: string;
+}
+
 export interface AppState {
   categoriesLoaded: boolean;
+  ingredientsLoaded: boolean;
 }
 
 // Global Redux States
 export interface State {
   categories: Category[]
   appState: AppState
+  ingredients: Ingredient[]
 }
 
 export interface ReduxAction {

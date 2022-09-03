@@ -12,6 +12,7 @@ const MealCard: React.FC<Props> = ({ meal }) => {
     height: '15em',
     background: `url(${meal.strMealThumb})`,
     backgroundSize: 'cover',
+    backgroundPosition: 'center',
     aspectRatio: '1',
     color: '#fff',
   };

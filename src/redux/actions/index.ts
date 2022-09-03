@@ -10,6 +10,13 @@ interface formattedMeal {
   name: string
 }
 
+interface rawIngredient {
+  idIngredient: string,
+  strIngredient: string,
+  strDescription: string,
+  strType?: any,
+}
+
 // Fetch names for each category
 const formatCategoryNames = (categories: { meals: meal[] }) => {
   const formatted = categories.meals.map(meal => ({ name: meal.strCategory }));
@@ -27,7 +34,7 @@ export const fetchCategoryNames = createAsyncThunk(
 // Fetch categories based on fetched category names
 const fetchCategories = async (categories: formattedMeal[]) => {
   const fetchedCategories: {}[] = [];
-  for ( let category of categories) {
+  for (let category of categories) {
     const fetchedCategory = await axios.get(`https://themealdb.com/api/json/v1/1/filter.php?c=${category.name}`);
     fetchedCategories.push(fetchedCategory.data);
   }
@@ -43,7 +50,31 @@ export const loadCategories = createAsyncThunk(
   }
 )
 
-// Set categories loaded state to true UPDATE_CATEGORIES_LOADED
+// Set categories loaded state to true
 export const updateCategoriesLoaded = () => ({
   type: actionType.UPDATE_CATEGORIES_LOADED,
 })
+
+// Set ingredients loaded state to true
+export const updateIngredientsLoaded = () => ({
+  type: actionType.UPDATE_INGREDIENTS_LOADED,
+})
+
+const formatIngredients = (ingredients: rawIngredient[]) => {
+  const formattedIngredients = ingredients.map(ingredient => ({
+    id: ingredient.idIngredient,
+    name: ingredient.strIngredient,
+    description: ingredient.strDescription,
+  }))
+  return formattedIngredients;
+}
+
+export const fetchIngredients = createAsyncThunk(
+  actionType.FETCH_INGREDIENTS,
+  async () => {
+    const { data } = await axios.get('https://themealdb.com/api/json/v1/1/list.php?i=list');
+    console.log(data);
+    return formatIngredients(data.meals);
+  }
+)
+
