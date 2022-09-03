@@ -15,9 +15,14 @@ export interface Ingredient {
   description: string;
 }
 
+export interface Area {
+  name: string;
+}
+
 export interface AppState {
   categoriesLoaded: boolean;
   ingredientsLoaded: boolean;
+  areasLoaded: boolean;
 }
 
 // Global Redux States
@@ -25,6 +30,7 @@ export interface State {
   categories: Category[]
   appState: AppState
   ingredients: Ingredient[]
+  areas: Area[]
 }
 
 export interface ReduxAction {

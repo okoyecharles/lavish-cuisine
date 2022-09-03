@@ -17,6 +17,10 @@ interface rawIngredient {
   strType?: any,
 }
 
+interface Area {
+  strArea: string
+}
+
 // Fetch names for each category
 const formatCategoryNames = (categories: { meals: meal[] }) => {
   const formatted = categories.meals.map(meal => ({ name: meal.strCategory }));
@@ -60,6 +64,10 @@ export const updateIngredientsLoaded = () => ({
   type: actionType.UPDATE_INGREDIENTS_LOADED,
 })
 
+export const updateAreasLoaded = () => ({
+  type: actionType.UPDATE_AREAS_LOADED,
+})
+
 const formatIngredients = (ingredients: rawIngredient[]) => {
   const formattedIngredients = ingredients.map(ingredient => ({
     id: ingredient.idIngredient,
@@ -77,4 +85,19 @@ export const fetchIngredients = createAsyncThunk(
     return formatIngredients(data.meals);
   }
 )
+
+const formatAreas = (areas: Area[] ) => {
+  const formatedAreas = areas.map((area) => ({
+    name: area.strArea,
+  }))
+  return formatedAreas;
+}
+
+export const fetchAreas = createAsyncThunk(
+  actionType.FETCH_AREAS, async () => {
+    const {data} = await axios.get('https://themealdb.com/api/json/v1/1/list.php?a=list');
+    return formatAreas(data.meals);
+  }
+);
+
 
