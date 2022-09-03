@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import './App.css';
-import fetchCategories from './redux/actions';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import "./App.css";
 
-function App() {
-  const dispatch = useDispatch<any>();
-  const [categoriesLoaded, setCategoriesLoaded] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (categoriesLoaded) return;
-    dispatch(fetchCategories());
-    setCategoriesLoaded(true);
-  }, [])
+const App: React.FC = () => {
   return (
     <div className="App">
-      App
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
+
+// through each category => category.name => axois.get(`.....c=${category.name}`)
