@@ -1,0 +1,5 @@
+.homeRow__items {
+  display: flex;
+  overflow-x: scroll;
+  height: 15em;
+}
