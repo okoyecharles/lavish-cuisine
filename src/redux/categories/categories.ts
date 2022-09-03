@@ -1,3 +1,5 @@
+import * as actionType from "../actionTypes";
+
 const initialState: {}[] = []
 
 interface ActionKeys {
@@ -6,8 +8,13 @@ interface ActionKeys {
 }
 
 const categoriesReducer = (state = initialState, action: ActionKeys) => {
+  const { payload } = action;
+
   switch(action.type){
-    default: return state;
+    case `${actionType.FETCH_CATEGORIES}/fulfilled`:
+      return payload;
+    default:
+      return state;
   }
 }
 
