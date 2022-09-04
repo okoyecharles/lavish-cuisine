@@ -2,14 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 import { useAppSelector } from "../hooks";
-import { fetchIngredients, updateIngredientsLoaded } from "../redux/actions";
+import {
+  fetchIngredients,
+  updateIngredientsLoaded,
+  updateMealListLoaded,
+} from "../redux/actions";
 import { IngredientsT } from "./Models";
 import "../styles/Ingredients.css";
-import { useOutlet } from "react-router-dom";
+import { useNavigate, useOutlet } from "react-router-dom";
+import { formatString } from "../utils/utils";
 
 const Ingredients: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<any>();
   const appState = useAppSelector((state) => state.appState);
+  const { mealListLoaded } = useAppSelector((state) => state.appState);
   let ingredients: IngredientsT = useAppSelector((state) => state.ingredients);
 
   const outlet = useOutlet();
@@ -49,7 +56,21 @@ const Ingredients: React.FC = () => {
         <div className="ingredients__container" style={ingredientsStyles}>
           {searchValue.length > 0 &&
             ingredients?.map((ingredient) => (
-              <span className="ingredient" key={v4()}>
+              <span
+                className="ingredient"
+                onClick={() => {
+                  if (formatString(ingredient.name) !== mealListLoaded.name) {
+                    dispatch(
+                      updateMealListLoaded({
+                        name: formatString(ingredient.name),
+                        base: "i",
+                      })
+                    );
+                    navigate(`./${formatString(ingredient.name)}`);
+                  }
+                }}
+                key={v4()}
+              >
                 {ingredient.name}
               </span>
             ))}
@@ -64,7 +85,11 @@ const Ingredients: React.FC = () => {
       </section>
 
       <section className="ingredients__col2">
-        {outlet || (<h2>Click a searched ingredient to display more information about it.</h2>)}
+        {outlet || (
+          <h2>
+            Click a searched ingredient to display more information about it.
+          </h2>
+        )}
       </section>
     </main>
   );

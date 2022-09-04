@@ -1,0 +1,1 @@
+export const formatString = (string: string) => string.toLowerCase().replace(/\s/g, '_');

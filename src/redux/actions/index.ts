@@ -22,6 +22,12 @@ interface Area {
   strArea: string
 }
 
+interface RawMealListItem {
+  strMeal: string,
+  strMealThumb: string,
+  idMeal: string,
+}
+
 // Fetch names for each category
 const formatCategoryNames = (categories: { meals: meal[] }) => {
   const formatted = categories.meals.map(meal => ({ name: meal.strCategory }));
@@ -55,18 +61,25 @@ export const loadCategories = createAsyncThunk(
   }
 )
 
-// Set categories loaded state to true
+// Set states loaded state to true
 export const updateCategoriesLoaded = () => ({
   type: actionType.UPDATE_CATEGORIES_LOADED,
 })
 
-// Set ingredients loaded state to true
 export const updateIngredientsLoaded = () => ({
   type: actionType.UPDATE_INGREDIENTS_LOADED,
 })
 
 export const updateAreasLoaded = () => ({
   type: actionType.UPDATE_AREAS_LOADED,
+})
+
+export const updateMealListLoaded = (payload: {
+  name: string,
+  base: string,
+}) => ({
+  type: actionType.UPDATE_MEAL_LIST_LOADED,
+  payload,
 })
 
 const formatIngredients = (ingredients: rawIngredient[]) => {
@@ -86,7 +99,7 @@ export const fetchIngredients = createAsyncThunk(
   }
 )
 
-const formatAreas = (areas: Area[] ) => {
+const formatAreas = (areas: Area[]) => {
   const formatedAreas = areas.map((area) => ({
     name: area.strArea,
   }))
@@ -95,9 +108,27 @@ const formatAreas = (areas: Area[] ) => {
 
 export const fetchAreas = createAsyncThunk(
   actionType.FETCH_AREAS, async () => {
-    const {data} = await axios.get('https://themealdb.com/api/json/v1/1/list.php?a=list');
+    const { data } = await axios.get('https://themealdb.com/api/json/v1/1/list.php?a=list');
     return formatAreas(data.meals);
   }
 );
 
+const formatMealList = (mealList: RawMealListItem[]) => {
+  const formattedMealList = mealList.map(meal => ({
+    id: meal.idMeal,
+    name: meal.strMeal,
+    image: meal.strMealThumb,
+  }))
 
+  return formattedMealList;
+}
+
+export const fetchMealList = createAsyncThunk(
+  actionType.FETCH_MEAL_LIST, async ({ name, base }: {
+    name: string,
+    base: string,
+  }) => {
+  const { data } = await axios.get(`https://themealdb.com/api/json/v1/1/filter.php?${base}=${name}`);
+  return formatMealList(data.meals);
+}
+)

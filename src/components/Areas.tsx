@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 import { useAppSelector } from "../hooks";
-import { fetchAreas, updateAreasLoaded } from "../redux/actions";
+import { fetchAreas, updateAreasLoaded, updateMealListLoaded } from "../redux/actions";
 import { AreasT } from "./Models";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import "../styles/Areas.css";
 import { keyframes } from "@emotion/react";
 import { Reveal } from "react-awesome-reveal";
+import { useNavigate } from "react-router-dom";
 
 const FlipAnimation = keyframes`
   from {
@@ -21,17 +22,23 @@ const FlipAnimation = keyframes`
   }
 `;
 
+
+
+
 const Areas: React.FC = () => {
+  const navigate = useNavigate();
   const areas: AreasT = useAppSelector((state) => state.areas);
   const appState = useAppSelector((state) => state.appState);
 
   const dispatch = useDispatch<any>();
 
+  console.log('load');
+
   useEffect(() => {
     if (appState.areasLoaded) return;
     dispatch(fetchAreas());
     dispatch(updateAreasLoaded());
-  });
+  }, [appState.areasLoaded]);
 
   return (
     <main className="areas">
@@ -39,7 +46,12 @@ const Areas: React.FC = () => {
         {areas?.map((area) => (
           <div className="area" key={v4()}>
             <h2>{area.name}</h2>
-            <div className="area__forward">
+            <div
+              className="area__forward"
+              onClick={() => {
+                  navigate(`./${area.name}`);
+              }}
+            >
               <IoArrowForwardOutline />
             </div>
           </div>

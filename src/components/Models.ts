@@ -28,12 +28,24 @@ export interface Area {
 }
 export type AreasT = Area[];
 
+export interface MealListItem {
+  id: string;
+  name: string;
+  image: string;
+}
+
+export type MealListT = MealListItem[];
+
 // APP STATE
 
 export interface AppState {
   categoriesLoaded: boolean;
   ingredientsLoaded: boolean;
   areasLoaded: boolean;
+  mealListLoaded: {
+    name: string,
+    base: string,
+  }
 }
 
 // Global Redux States
