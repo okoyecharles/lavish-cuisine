@@ -82,7 +82,6 @@ export const fetchIngredients = createAsyncThunk(
   actionType.FETCH_INGREDIENTS,
   async () => {
     const { data } = await axios.get('https://themealdb.com/api/json/v1/1/list.php?i=list');
-    console.log(data);
     return formatIngredients(data.meals);
   }
 )
