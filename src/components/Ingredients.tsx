@@ -34,7 +34,7 @@ const Ingredients: React.FC = () => {
 
   return (
     <main className="ingredients">
-      <div className="ingredients__col1">
+      <section className="ingredients__col1">
         <div className="ingredients__header">
           <input
             type="text"
@@ -61,11 +61,11 @@ const Ingredients: React.FC = () => {
             </h3>
           )}
         </div>
-      </div>
+      </section>
 
-      <div className="ingredients__col2">
+      <section className="ingredients__col2">
         {outlet || (<h2>Click a searched ingredient to display more information about it.</h2>)}
-      </div>
+      </section>
     </main>
   );
 };

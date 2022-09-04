@@ -1,0 +1,54 @@
+.areas {
+  background: #c0841d;
+  min-height: 100vh;
+  padding: 2em 1em;
+
+}
+
+.area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  margin-bottom: 0.5em;
+  background-color: #fff;
+  color: rgb(84, 58, 13);
+  border-radius: 0.5em;
+  box-shadow: 0 0 0.5em rgba(84, 58, 13, 0.7);
+}
+
+.area__forward {
+  background-color: #fff;  
+  height: fit-content;
+  display: grid;
+  padding: .5em;
+  place-items: center;
+  font-size: 1.5em;
+  border-radius: 1em;
+  transition: background-color 0.1s ease-in
+  ;
+}
+
+.area__forward > * {
+  translate: -0.5em;
+  color:#c0841d;
+  transition:
+    translate 0.35s ease,
+    color 0.1s ease-in,
+  ;
+}
+
+.area__forward:hover {
+  background-color: #c0841dd7;
+  transition: background-color 0.1s 0.25s ease-in
+  ;
+}
+
+.area__forward:hover > * {
+  translate: 0;
+  color: white;
+  transition:
+    translate 0.35s ease,
+    color 0.1s 0.25s ease-in,
+  ;
+}
