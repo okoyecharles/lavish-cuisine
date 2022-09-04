@@ -5,6 +5,7 @@ import "./App.css";
 import Nav from "./components/Nav";
 import Ingredients from "./components/Ingredients";
 import Areas from "./components/Areas";
+import MealList from "./components/MealList";
 
 const App: React.FC = () => {
   return (
@@ -12,7 +13,9 @@ const App: React.FC = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/ingredients" element={<Ingredients />} />
+        <Route path="/ingredients/" element={<Ingredients />} >
+          <Route path=":mealName" element={<MealList />} />
+        </Route>
         <Route path="/areas" element={<Areas />} />
       </Routes>
     </div>

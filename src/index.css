@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+*::selection {
+  background: #c0841d67;
+}
+
 
 /* <h1> ::before Hello world ::after </h1> */
 /* Remove default margin */

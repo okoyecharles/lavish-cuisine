@@ -4,11 +4,15 @@ import { v4 } from "uuid";
 import { useAppSelector } from "../hooks";
 import { fetchIngredients, updateIngredientsLoaded } from "../redux/actions";
 import { IngredientsT } from "./Models";
+import "../styles/Ingredients.css";
+import { Outlet, useOutlet } from "react-router-dom";
 
 const Ingredients: React.FC = () => {
   const dispatch = useDispatch<any>();
   const appState = useAppSelector((state) => state.appState);
   let ingredients: IngredientsT = useAppSelector((state) => state.ingredients);
+
+  const outlet = useOutlet();
 
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -24,38 +28,43 @@ const Ingredients: React.FC = () => {
     gap: ".5em",
   };
 
-  const ingredientStyles: React.CSSProperties = {
-    background: "#d3d3d3",
-    padding: ".25em .5em",
-    borderRadius: ".35em",
-  };
-
   ingredients = ingredients.filter((ingredient) =>
     ingredient.name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   return (
     <main className="ingredients">
-      <div className="ingredients__header">
-        <input
-          type="text"
-          value={searchValue}
-          onChange={(event) => {
-            setSearchValue(event.target.value);
-          }}
-        />
+      <div className="ingredients__col1">
+        <div className="ingredients__header">
+          <input
+            type="text"
+            placeholder="Search an ingredient..."
+            value={searchValue}
+            onChange={(event) => {
+              setSearchValue(event.target.value);
+            }}
+          />
+        </div>
+
+        <div className="ingredients__container" style={ingredientsStyles}>
+          {searchValue.length > 0 &&
+            ingredients?.map((ingredient) => (
+              <span className="ingredient" key={v4()}>
+                {ingredient.name}
+              </span>
+            ))}
+          {searchValue.length <= 0 && (
+            <h3
+              style={{ textAlign: "center", width: "100%", color: "#543a0d" }}
+            >
+              Please input at least one letter to search
+            </h3>
+          )}
+        </div>
       </div>
 
-      <div className="ingredients__container" style={ingredientsStyles}>
-        {searchValue.length > 0 &&
-          ingredients?.map((ingredient) => (
-            <span className="ingredient" style={ingredientStyles} key={v4()}>
-              {ingredient.name}
-            </span>
-          ))}
-        {searchValue.length <= 0 && (
-          <h3>Please input at least one value to search</h3>
-        )}
+      <div className="ingredients__col2">
+        {outlet || (<h2>Click a searched ingredient to display more information about it.</h2>)}
       </div>
     </main>
   );

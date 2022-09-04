@@ -13,7 +13,7 @@ interface Props {
 const FlipAnimation = keyframes`
   from {
     opacity: 0;
-    rotate: x 60deg;
+    rotate: x -60deg;
   }
 
   to {
