@@ -1,7 +1,7 @@
-import { Category, ReduxAction } from "../../components/Models";
+import { CategoriesT, ReduxAction } from "../../components/Models";
 import * as actionType from "../actionTypes";
 
-const initialState: Category[] = []
+const initialState: CategoriesT = []
 
 const categoriesReducer = (state = initialState, action: ReduxAction) => {
   const { payload } = action;

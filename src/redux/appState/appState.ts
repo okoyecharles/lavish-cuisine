@@ -8,7 +8,6 @@ const initialState: AppState = {
 }
 
 const appStateReducer = (state = initialState, action: ReduxAction) => {
-  const { payload } = action;
   switch (action.type) {
     case actionType.UPDATE_CATEGORIES_LOADED:
       return { ...state, categoriesLoaded: !state.categoriesLoaded }

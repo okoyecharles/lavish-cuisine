@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../hooks";
 import { fetchIngredients, updateIngredientsLoaded } from "../redux/actions";
-import { State } from "./Models";
+import { IngredientsT } from "./Models";
 
 const Ingredients: React.FC = () => {
   const dispatch = useDispatch<any>();
-  const appState = useSelector((state: State) => state.appState);
-  let ingredients = useSelector((state: State) => state.ingredients);
+  const appState = useAppSelector(state => state.appState);
+  let ingredients: IngredientsT = useAppSelector(state => state.ingredients);
 
   const [searchValue, setSearchValue] = useState<string>("");
 

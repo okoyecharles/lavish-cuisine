@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
+import { useAppSelector } from "../hooks";
 import { fetchAreas, updateAreasLoaded } from "../redux/actions";
-import { State } from "./Models";
+import { AreasT } from "./Models";
 
 const Areas: React.FC = () => {
-  const areas = useSelector((state: State) => state.areas);
-  const appState = useSelector((state: State) => state.appState);
+  const areas: AreasT = useAppSelector(state => state.areas);
+  const appState = useAppSelector(state => state.appState);
 
   const dispatch = useDispatch<any>();
 

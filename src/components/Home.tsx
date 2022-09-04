@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchCategoryNames, loadCategories, updateCategoriesLoaded } from "../redux/actions";
 import HomeRow from "./HomeRow";
-import { State } from "./Models";
 import { v4 } from "uuid";
 import '../styles/Home.css';
+import { useAppSelector } from "../hooks";
+import { CategoriesT } from "./Models";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch<any>();
   const [categoryNamesLoaded, setCategoryNamesLoaded] = useState<boolean>(false);
 
 
-  const categories = useSelector((state: State) => state.categories);
-  const appState = useSelector((state: State) => state.appState);
+  const categories: CategoriesT = useAppSelector(state => state.categories);
+  const appState = useAppSelector(state => state.appState);
 
   useEffect(() => {
     if (appState.categoriesLoaded) return;

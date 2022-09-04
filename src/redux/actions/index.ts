@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Category } from "../../components/Models";
 import * as actionType from '../actionTypes';
 
 interface meal {
@@ -37,7 +38,7 @@ export const fetchCategoryNames = createAsyncThunk(
 
 // Fetch categories based on fetched category names
 const fetchCategories = async (categories: formattedMeal[]) => {
-  const fetchedCategories: {}[] = [];
+  const fetchedCategories: Category[] = [];
   for (let category of categories) {
     const fetchedCategory = await axios.get(`https://themealdb.com/api/json/v1/1/filter.php?c=${category.name}`);
     fetchedCategories.push(fetchedCategory.data);
