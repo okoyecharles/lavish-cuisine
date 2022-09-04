@@ -5,7 +5,7 @@ import { useAppSelector } from "../hooks";
 import { fetchIngredients, updateIngredientsLoaded } from "../redux/actions";
 import { IngredientsT } from "./Models";
 import "../styles/Ingredients.css";
-import { Outlet, useOutlet } from "react-router-dom";
+import { useOutlet } from "react-router-dom";
 
 const Ingredients: React.FC = () => {
   const dispatch = useDispatch<any>();

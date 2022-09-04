@@ -6,7 +6,7 @@ const MealList = () => {
 
 
   return (
-    <div>This is the meal list component, Parameter: {params.mealName}</div>
+    <div>This is the meal list component, Parameter: {params.ingredient}</div>
   )
 }
 

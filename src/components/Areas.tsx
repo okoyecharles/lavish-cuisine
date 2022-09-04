@@ -35,9 +35,7 @@ const Areas: React.FC = () => {
 
   return (
     <main className="areas">
-      <Reveal
-        keyframes={FlipAnimation}
-      >
+      <Reveal triggerOnce keyframes={FlipAnimation} delay={250}>
         {areas?.map((area) => (
           <div className="area" key={v4()}>
             <h2>{area.name}</h2>
