@@ -1,0 +1,34 @@
+.mealList {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  list-style-type: none;
+  padding: 1em;
+}
+
+.mealList__item {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  justify-content: space-between;
+  height: 7.5em;
+  background: #bf841d69;
+  border-radius: .5em;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 0.05em #bf841d;
+}
+
+.mealList__item h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mealList__item > img {
+  height: 15em;
+  align-self: baseline;
+}
+
+.mealList__itemForward {
+  margin: 1em;
+}
