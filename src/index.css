@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
 /* Box sizing rules */
 *,
 *::before,
@@ -10,6 +12,7 @@
 /* Remove default margin */
 * {
   margin: 0;
+  font-family: 'Lato', sans-serif;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */

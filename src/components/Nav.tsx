@@ -12,7 +12,7 @@ const Nav = () => {
         <p>Lavish Cuisine</p>
       </div>
       <nav className="nav__menu" aria-roledescription='main navigation'>
-        <ul className="nav__Links">
+        <ul className="nav__links">
         <NavLink to='/'>Home</NavLink>
         <NavLink to='/ingredients'>Ingredients</NavLink>
         <NavLink to='/areas'>Areas</NavLink>
