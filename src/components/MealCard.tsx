@@ -8,13 +8,7 @@ interface Props {
 
 const MealCard: React.FC<Props> = ({ meal }) => {
   const mealCardStyles: React.CSSProperties = {
-    boxShadow: 'inset 0 15em rgba(0, 0, 0, .5)',
-    height: '15em',
     background: `url(${meal.strMealThumb})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    aspectRatio: '1',
-    color: '#fff',
   };
 
   return (
