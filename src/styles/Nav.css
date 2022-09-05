@@ -12,6 +12,10 @@
   z-index: 100;
 }
 
+.nav__logo {
+  cursor: pointer;
+}
+
 .nav__logo, .nav__links {
   display: flex;
   align-items: center;
