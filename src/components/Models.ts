@@ -87,9 +87,9 @@ export interface MealT {
   strMeasure18?: string | null;
   strMeasure19?: string | null;
   strMeasure20?: string | null;
-  strSource?: string;
+  strSource?: any;
   strTags?: string | null;
-  strYoutube?: string;
+  strYoutube?: any;
 }
 
 // APP STATE
