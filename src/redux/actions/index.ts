@@ -132,3 +132,11 @@ export const fetchMealList = createAsyncThunk(
   return formatMealList(data.meals);
 }
 )
+
+export const fetchMealInfo = createAsyncThunk(
+  actionType.FETCH_MEAL_INFO,
+  async (name: string | undefined) => {
+    const { data: { meals } } = await axios.get(`https://themealdb.com/api/json/v1/1/search.php?s=${name}`);
+    return meals[0];
+  }
+)

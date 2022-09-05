@@ -1,0 +1,27 @@
+.meal {
+  padding: 2em 1em;
+}
+
+.meal > section > h2 {
+  text-decoration: underline;
+}
+
+.meal__measurementsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.meal__measurementsContainer > :is(.col1, .col2) > * {
+  box-shadow: 0 0 0 0.05em #6f4b0c;
+  padding: .5em 1em;
+}
+
+.meal__help > div {
+  display: flex;
+  gap: 1em;
+}
+
+.meal__help > div > a {
+  color: #c0841d;
+  font-size: 2em;
+}

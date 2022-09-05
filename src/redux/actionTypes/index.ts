@@ -20,3 +20,6 @@ export const FETCH_MEAL_LIST: string = 'LS/store/mealList/FETCH_MEAL_LIST';
 
 // DETAILS
 export const FETCH_DETAILS: string = 'LS/store/details/FETCH_DETAILS';
+
+// MEAL
+export const FETCH_MEAL_INFO: string = 'LS/store/meal/FETCH_MEAL_INFO';
