@@ -140,3 +140,13 @@ export const fetchMealInfo = createAsyncThunk(
     return meals[0];
   }
 )
+
+export const clearMealList = () => ({
+  type: actionType.CLEAR_MEAL_LIST,
+});
+
+
+export const clearMealInfo = () => ({
+  type: actionType.CLEAR_MEAL_INFO,
+});
+

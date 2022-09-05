@@ -4,12 +4,15 @@ import "../styles/MealCard.css";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { formatString } from "../utils/utils";
+import { clearMealInfo } from "../redux/actions";
+import { useDispatch } from "react-redux";
 
 interface Props {
   meal: Meal;
 }
 
 const MealCard: React.FC<Props> = ({ meal }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const mealCardStyles: React.CSSProperties = {
     background: `url(${meal.strMealThumb})`,
@@ -22,6 +25,7 @@ const MealCard: React.FC<Props> = ({ meal }) => {
         <MdArrowForwardIos
           className="mealCard__arrow"
           onClick={() => {
+            dispatch(clearMealInfo());
             navigate(`/meal/${formatString(meal.strMeal)}`);
           }}
         />

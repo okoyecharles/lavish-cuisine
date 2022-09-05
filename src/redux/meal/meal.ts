@@ -8,6 +8,8 @@ const mealReducer = (state = initialState, action: ReduxAction) => {
   switch (type) {
     case `${actionType.FETCH_MEAL_INFO}/fulfilled`:
       return payload;
+    case actionType.CLEAR_MEAL_INFO:
+      return {};
     default:
       return state;
   }
