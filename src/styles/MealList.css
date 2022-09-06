@@ -49,3 +49,35 @@
 .mealList__errorMessage {
   margin-inline: auto;
 }
+
+@media screen and (max-width: 700px) {
+  .mealList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13.5em, 1fr));
+  }
+
+  .mealList__item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    padding: 0;
+    height: fit-content;
+    box-shadow: 0 0 .35em #774e0735;
+  }
+
+  .mealList__item > img {
+    height: 100%;
+    grid-column: span 4;
+  }
+  
+  .mealList__item > h3 {
+    grid-column: span 3;
+    padding: .5em 0 .5em .5em;
+  }
+
+  .mealList__itemForward {
+    font-size: 1.25em;
+    justify-self: center;
+    margin: 0;
+  }
+}
