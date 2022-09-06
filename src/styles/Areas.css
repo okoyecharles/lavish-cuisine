@@ -2,7 +2,8 @@
   background: #c0841d;
   min-height: 100vh;
   padding: 2em 1em;
-
+  max-width: 125em;
+  margin-inline: auto;
 }
 
 .area {

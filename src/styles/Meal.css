@@ -3,6 +3,8 @@
 .meal {
   display: flex;
   flex-direction: column;
+  max-width: 125em;
+  margin-inline: auto;
 }
 
 .meal__header {
@@ -80,6 +82,19 @@
   padding: .5em;
 }
 
+.meal__instructionsContainer > div {
+  cursor: pointer;
+  color: #c0841d;
+  font-weight: 700;
+  margin-inline: .5em;
+  user-select: none;
+}
+
+.meal__instructionsContainer > div:hover {
+  color: #b17919;
+  text-decoration: underline;
+}
+
 .meal__instructionsContainer::after {
   content: '';
   position: absolute;
@@ -132,4 +147,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+  .meal__header > h1 {
+    font-size: 1.75em;
+  }
+  .meal__instructionsContainer {
+    font-size: 0.95em;
+  }
 }

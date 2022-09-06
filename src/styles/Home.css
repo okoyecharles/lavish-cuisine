@@ -1,4 +1,6 @@
 .home {
   background: #c0841d;
   padding: 2em 1em;
+  max-width: 125em;
+  margin-inline: auto;
 }

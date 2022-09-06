@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks";
@@ -17,7 +17,7 @@ const Meal: React.FC = () => {
 
   const meal: MealT = useAppSelector((state) => state.meal);
 
-  console.log(params.meal);
+  const [showMore, setShowMore] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(fetchMealInfo(params.meal));
@@ -59,12 +59,18 @@ const Meal: React.FC = () => {
             </div>
           </section>
           <section className="meal__instructions">
-            <h2>Preparation <GiChefToque /></h2>
-            <div
-              className="meal__instructionsContainer"
-              dangerouslySetInnerHTML={{ __html: meal?.strInstructions }}
-            >
-              {}
+            <h2>
+              Preparation <GiChefToque />
+            </h2>
+            <div className="meal__instructionsContainer">
+              {showMore
+                ? meal?.strInstructions
+                : meal?.strInstructions.substring(0, 500)}
+              <div onClick={() => {setShowMore((prevState) => !prevState)}}>
+                {showMore
+                ? 'show less'
+                : 'show more...'}
+              </div>
             </div>
           </section>
           {(isValidString(meal.strYoutube) ||

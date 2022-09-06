@@ -1,6 +1,8 @@
 .ingredients {
   display: flex;
   min-height: 95vh;
+  max-width: 125em;
+  margin-inline: auto;
 }
 
 .ingredients__col1 {
@@ -50,6 +52,7 @@
 
 .ingredients__col2 {
   padding:  2em 1em;
+  background: rgb(244, 244, 244);
 }
 
 .ingredients__col2 h2 {

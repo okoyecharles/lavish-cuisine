@@ -6,6 +6,14 @@
   padding: 1em;
 }
 
+.mealList__back {
+  font-weight: 300;
+  text-decoration: underline;
+  font-size: 1.25em;
+  color: #825914;
+  padding: .5em 1em;
+}
+
 .mealList__item {
   display: flex;
   align-items: center;
@@ -47,6 +55,7 @@
 }
 
 .mealList__errorMessage {
+  font-weight: 400;
   margin-inline: auto;
 }
 
