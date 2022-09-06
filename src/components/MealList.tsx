@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks";
-import { fetchMealList } from "../redux/actions";
+import { clearMealInfo, fetchMealList } from "../redux/actions";
 import { MealListT } from "./Models";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { SiCoffeescript } from "react-icons/si";
@@ -35,6 +35,7 @@ const MealList = () => {
             <IoArrowForwardOutline
               className="mealList__itemForward"
               onClick={() => {
+                dispatch(clearMealInfo())
                 navigate(`/meal/${formatString(meal.name)}`);
               }}
             />
