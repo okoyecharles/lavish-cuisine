@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import "./App.css";
@@ -9,9 +9,17 @@ import MealList from "./components/MealList";
 import Meal from "./components/Meal";
 
 const App: React.FC = () => {
+  const [mediaWidth, setMediaWidth] = useState<number>(0);
+  window.addEventListener('resize', () => {
+    setMediaWidth(window.innerWidth);
+  })
+  useEffect(() => {
+    setMediaWidth(window.innerWidth);
+  }, []);
+
   return (
     <div className="App">
-      <Nav />
+      <Nav mediaWidth={mediaWidth} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ingredients/" element={<Ingredients />}>

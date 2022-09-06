@@ -37,8 +37,6 @@
   text-transform: uppercase;
   text-decoration: none;
   color: #222;
-
-
 }
 
 .nav__links a.active::after {
@@ -65,3 +63,75 @@
   transform-origin: left;
 }
 
+.nav__toggleOpen {
+  font-size: 2em;
+  color: #c0841d;
+}
+
+@media screen and (max-width: 500px) {
+  .nav {
+    font-size: 1.1em;
+  }
+
+  .nav__menu {
+    z-index: 105;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    box-shadow: inset 0 0 0 0em rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    display: flex;
+    transition: .2s ease-out;
+  }
+  
+  .nav__menu.active {
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 100vh 0 0.05em rgba(0, 0, 0, 0.8);
+    pointer-events: all;
+
+    transition:
+      box-shadow .25s ease-out,
+      backdrop-filter .2s ease,
+    ;
+  }
+  
+  .nav__menu .nav__links {
+    padding: 0.5em 1em;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    flex: 0.8;
+    background-color: #fff;
+    transform: translateX(-100%);
+    transition: transform .2s ease-out;
+  }
+
+  .nav__menu.active .nav__links {
+    transition: transform .2s .25s ease-out;
+    transform: translateX(0);
+  }
+  
+  .nav__links a {
+    font-size: 2em;
+    color: #000;
+  }
+
+  .nav__menu .nav__toggleClose {
+    margin-top: .75rem;
+    font-size: 2em;
+    color: #fff;
+    flex: 0.2;
+    opacity: 0;
+    transition: opacity .2s ease-out;
+  }
+
+  .nav__menu.active .nav__toggleClose {
+    transition: opacity .2s .25s ease-out;
+    opacity: 1;
+  }
+}
+
+/* nav menu contains navlinks & x */
