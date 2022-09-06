@@ -15,6 +15,18 @@
   color: rgb(84, 58, 13);
   border-radius: 0.5em;
   box-shadow: 0 0 0.5em rgba(84, 58, 13, 0.7);
+
+  transition: 
+  scale .25s ease-out,
+  box-shadow .25s ease-out,
+  background-color .25s ease-in
+  ;
+}
+
+.area:hover {
+  scale: 0.985;
+  box-shadow: 0 0 0.5em rgba(84, 58, 13, 0.7), inset 0 .5em .35em #c0841d21, inset 0 -.5em .35em #c0841d21;
+  background-color: #fffbf5;
 }
 
 .area__forward {

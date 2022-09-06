@@ -18,6 +18,7 @@ const Ingredients: React.FC = () => {
   const dispatch = useDispatch<any>();
   const appState = useAppSelector((state) => state.appState);
   const { mealListLoaded } = useAppSelector((state) => state.appState);
+  const [ currentPageIng, setCurrentPageIng ] = useState<string>('none');
   let ingredients: IngredientsT = useAppSelector((state) => state.ingredients);
 
   const outlet = useOutlet();
@@ -60,7 +61,7 @@ const Ingredients: React.FC = () => {
               <span
                 className="ingredient"
                 onClick={() => {
-                  if (formatString(ingredient.name) !== mealListLoaded.name) {
+                  if (formatString(ingredient.name) !== (mealListLoaded.name && currentPageIng)) {
                     dispatch(clearMealList());
                     dispatch(
                       updateMealListLoaded({
@@ -68,6 +69,7 @@ const Ingredients: React.FC = () => {
                         base: "i",
                       })
                     );
+                    setCurrentPageIng(formatString(ingredient.name));
                     navigate(`./${formatString(ingredient.name)}`);
                   }
                 }}

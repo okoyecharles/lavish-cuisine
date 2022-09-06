@@ -1,29 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kalam:wght@300;400;700&display=swap');
+
 .meal {
   display: flex;
   flex-direction: column;
-  padding: 2em 1em;
+}
+
+.meal__header {
+  background: #c0841d;
+  box-shadow: 0 0 .25em #6f4b0c;
+  color: #fff;
+  padding: 1em;
+}
+
+.meal__header > h1 {
+  font-weight: 900;
+}
+
+.meal__header > span {
+  background: rgba(255, 255, 255, 0.485);
+  padding: .25em .5em;
+  border-radius: .25em;
+  color: #6f4b0c;
+}
+
+.meal > section {
+  padding: 1em;
 }
 
 .meal > section > h2 {
-  text-decoration: underline;
+  position: relative;
+  color: #6f4b0c;
+  margin-bottom: 1em;
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: .5em;
+}
+
+.meal > section > h2::after {
+  content: '';
+  position: absolute;
+  bottom: -.1em;
+  left: 0;
+  width: 100%;
+  height: .1em;
+  background: #c0841d;
+  transform-origin: left;
+  scale: .9 1;
 }
 
 .meal__measurementsContainer {
   display: grid;
+  margin-inline: 1em;
   grid-template-columns: 1fr 1fr;
+  box-shadow: 0 0 .75em #6f4b0c47;
+}
+
+.meal__measurementsContainer > :is(.col1, .col2) :first-child {
+  text-transform: uppercase;
+  color: #6f4b0c;
+  font-weight: 900;
 }
 
 .meal__measurementsContainer > :is(.col1, .col2) > * {
-  box-shadow: 0 0 0 0.05em #6f4b0c;
   padding: .5em 1em;
+}
+
+.meal__measurementsContainer > :is(.col1, .col2) > :nth-child(even) {
+  background-color: #c0841d14;
+}
+
+.meal__instructionsContainer {
+  position: relative;
+  line-height: 1.5em;
+  font-size: 1.25em;
+  font-family: 'Kalam', cursive;
+  background-color: #c0841d14;
+  padding: .5em;
+}
+
+.meal__instructionsContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: .1em;
+  background: #c0841d;
+  transform-origin: left;
+  scale: .9 1;
+}
+
+.meal__help {
+  margin-bottom: 1em;
 }
 
 .meal__help > div {
   display: flex;
-  gap: 1em;
+  gap: .5em;
+}
+
+.meal__help > div > :nth-child(1)::after {
+  content: 'youtube';
+}
+
+.meal__help > div > :nth-child(2)::after {
+  content: 'cookbook';
+}
+
+.meal__help > div > a::after {
+  opacity: 0;
+
+  transition:
+   .25s ease
+  ;
+}
+
+.meal__help > div > a:hover::after {
+  opacity: 1;
+}
+
+.meal__help > div > a :first-child {
+  font-size: 2em;
 }
 
 .meal__help > div > a {
   color: #c0841d;
-  font-size: 2em;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

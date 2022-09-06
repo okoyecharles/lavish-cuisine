@@ -6,6 +6,7 @@ import { fetchMealInfo } from "../redux/actions";
 import { MealT } from "./Models";
 import { AiFillYoutube } from "react-icons/ai";
 import { BsJournalBookmark } from "react-icons/bs";
+import { GiChefToque } from "react-icons/gi";
 import "../styles/Meal.css";
 import { isValidString } from "../utils/utils";
 import { TailSpin } from "react-loader-spinner";
@@ -58,7 +59,7 @@ const Meal: React.FC = () => {
             </div>
           </section>
           <section className="meal__instructions">
-            <h2>Preparation</h2>
+            <h2>Preparation <GiChefToque /></h2>
             <div
               className="meal__instructionsContainer"
               dangerouslySetInnerHTML={{ __html: meal?.strInstructions }}
