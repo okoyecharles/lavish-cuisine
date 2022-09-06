@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 import { useAppSelector } from "../hooks";
 import {
+  clearMealList,
   fetchIngredients,
   updateIngredientsLoaded,
   updateMealListLoaded,
@@ -60,6 +61,7 @@ const Ingredients: React.FC = () => {
                 className="ingredient"
                 onClick={() => {
                   if (formatString(ingredient.name) !== mealListLoaded.name) {
+                    dispatch(clearMealList());
                     dispatch(
                       updateMealListLoaded({
                         name: formatString(ingredient.name),

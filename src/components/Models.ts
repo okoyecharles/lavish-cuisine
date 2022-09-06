@@ -32,6 +32,7 @@ export interface MealListItem {
   id: string;
   name: string;
   image: string;
+  error?: string;
 }
 
 export type MealListT = MealListItem[];

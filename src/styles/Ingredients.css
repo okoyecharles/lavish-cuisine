@@ -52,7 +52,7 @@
   padding:  2em 1em;
 }
 
-.ingredients__col2 > h2 {
+.ingredients__col2 h2 {
   font-weight: 300;
   font-size: 1.25em;
 }

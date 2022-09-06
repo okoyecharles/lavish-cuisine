@@ -32,3 +32,13 @@
 .mealList__itemForward {
   margin: 1em;
 }
+
+.mealList__errorIcon {
+  font-size: 10em;
+  color: #c0841d;
+  margin-inline: auto;
+}
+
+.mealList__errorMessage {
+  margin-inline: auto;
+}

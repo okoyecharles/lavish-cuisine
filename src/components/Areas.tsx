@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 import { useAppSelector } from "../hooks";
-import { fetchAreas, updateAreasLoaded } from "../redux/actions";
+import { clearMealList, fetchAreas, updateAreasLoaded } from "../redux/actions";
 import { AreasT } from "./Models";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import "../styles/Areas.css";
@@ -47,6 +47,7 @@ const Areas: React.FC = () => {
             <div
               className="area__forward"
               onClick={() => {
+                  dispatch(clearMealList());
                   navigate(`./${area.name.toLowerCase()}`);
               }}
             >

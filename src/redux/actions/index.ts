@@ -145,8 +145,6 @@ export const clearMealList = () => ({
   type: actionType.CLEAR_MEAL_LIST,
 });
 
-
 export const clearMealInfo = () => ({
   type: actionType.CLEAR_MEAL_INFO,
 });
-
