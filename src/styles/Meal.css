@@ -54,23 +54,7 @@
 
 .meal__measurementsContainer {
   display: grid;
-  margin-inline: 1em;
-  grid-template-columns: 1fr 1fr;
-  box-shadow: 0 0 .75em #6f4b0c47;
-}
-
-.meal__measurementsContainer > :is(.col1, .col2) :first-child {
-  text-transform: uppercase;
-  color: #6f4b0c;
-  font-weight: 900;
-}
-
-.meal__measurementsContainer > :is(.col1, .col2) > * {
-  padding: .5em 1em;
-}
-
-.meal__measurementsContainer > :is(.col1, .col2) > :nth-child(even) {
-  background-color: #c0841d14;
+  box-shadow: 0 0 .75em #6f4b0c47 !important;
 }
 
 .meal__instructionsContainer {

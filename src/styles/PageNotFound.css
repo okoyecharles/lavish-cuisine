@@ -1,0 +1,69 @@
+.pageNotFound {
+  padding: 0.5em 1em;
+}
+
+.pageNotFound__header {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 0.5em solid #c0841d;
+  margin-bottom: 1em;
+}
+
+.pageNotFound__header > h1 {
+  color: #51380b;
+  font-weight: 300;
+  text-align: center;
+}
+
+.pageNotFound__icon {
+  font-size: 12.5em;
+  margin-inline: auto;
+  color: #c0841d;
+}
+
+.pageNotFound__content > h2 {
+  font-weight: 400;
+  font-size: 1.2em;
+}
+
+.pageNotFound__content > ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pageNotFound__content > ul > li {
+  font-weight: 300;
+  margin-bottom: .5em;
+}
+
+.pageNotFound__content > ul div {
+  color: #8f5b01;
+  width: fit-content;
+}
+
+.pageNotFound__content > ul div:hover {
+  cursor: pointer;
+  color: #916417;
+  text-decoration: underline;
+}
+
+.pageNotFound__content > ul div:hover + span {
+  background: #c68919e0;
+}
+
+.pageNotFound__content > ul span {
+  background: #c68919a1;
+  color: white;
+  padding: .25em;
+}
+
+.pageNotFound__content > ul span::before {
+  content: '↳ ';
+  color: white;
+}
+
+@media screen and (max-width: 700px) {
+  .pageNotFound__content > ul span {
+    background: #c68919e0;
+  }
+}

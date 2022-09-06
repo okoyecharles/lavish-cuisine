@@ -92,7 +92,9 @@
 
 @media screen and (max-width: 700px) {
   .homeRow {
-    font-size: 0.7em;
+    font-size: 0.6em;
+    border-radius: 0;
+    margin-bottom: 0;
   }
 
   .homeRow > h2 {

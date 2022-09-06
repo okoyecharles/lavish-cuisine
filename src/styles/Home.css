@@ -4,3 +4,12 @@
   max-width: 125em;
   margin-inline: auto;
 }
+
+@media screen and (max-width: 700px) {
+  .home {
+    background: #c0841d;
+    padding: 2em 0;
+    max-width: 125em;
+    margin-inline: auto;
+  }
+}

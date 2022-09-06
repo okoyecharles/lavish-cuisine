@@ -7,6 +7,7 @@ import Ingredients from "./components/Ingredients";
 import Areas from "./components/Areas";
 import MealList from "./components/MealList";
 import Meal from "./components/Meal";
+import PageNotFound from "./components/PageNotFound";
 
 const App: React.FC = () => {
   const [mediaWidth, setMediaWidth] = useState<number>(0);
@@ -23,26 +24,25 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         {mediaWidth > 700 ? (
-          <Route path="/ingredients/" element={<Ingredients mediaWidth={mediaWidth} />}>
+          <Route
+            path="/ingredients/"
+            element={<Ingredients mediaWidth={mediaWidth} />}
+          >
             <Route path=":ingredient" element={<MealList />} />
           </Route>
         ) : (
           <>
-            <Route path="/ingredients" element={<Ingredients mediaWidth={mediaWidth} />} />
+            <Route
+              path="/ingredients"
+              element={<Ingredients mediaWidth={mediaWidth} />}
+            />
             <Route path="/ingredients/:ingredient" element={<MealList />} />
           </>
         )}
         <Route path="/areas" element={<Areas />} />
         <Route path="/areas/:area" element={<MealList />} />
         <Route path="/meal/:meal" element={<Meal />} />
-        <Route
-          path="*"
-          element={
-            <h1>
-              Sorry page not found. Go back <Link to="/">home</Link>
-            </h1>
-          }
-        />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
