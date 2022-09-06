@@ -46,7 +46,7 @@
 .homeRow__items > * > .mealCard__content > .mealCard__arrow {
   font-size: 2em;
   padding: .25em;
-  background: transparent;
+  background-color: transparent;
   border-radius: .1em;
   translate: -1em;
   opacity: 0;
@@ -75,7 +75,7 @@
 .homeRow__items > *:hover > .mealCard__content > .mealCard__arrow {
   transition: 
     opacity .75s 0s ease,
-    background 1s .0s ease,
+    background-color 1s .0s ease,
     translate .5s .25s ease,
     scale .25s ease-in,
     box-shadow .25s ease,
@@ -88,4 +88,18 @@
 .homeRow__items > *:hover > .mealCard__content > .mealCard__arrow:hover {
   scale: 1.1;
   box-shadow: 0 0 .25em #00000050;
+}
+
+@media screen and (max-width: 700px) {
+  .homeRow {
+    font-size: 0.7em;
+  }
+
+  .homeRow > h2 {
+    font-size: 1.75em;
+  }
+
+  .homeRow__items > * > .mealCard__content > h3 {
+    font-size: 1.75em;
+  }
 }
