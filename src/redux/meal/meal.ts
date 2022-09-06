@@ -1,7 +1,7 @@
 import { MealT, ReduxAction } from '../../components/Models';
 import * as actionType from '../actionTypes';
 
-const initialState: MealT = {};
+const initialState: Partial<MealT> = {};
 
 const mealReducer = (state = initialState, action: ReduxAction) => {
   const { payload, type } = action;
