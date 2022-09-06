@@ -13,12 +13,16 @@ import "../styles/Ingredients.css";
 import { useNavigate, useOutlet } from "react-router-dom";
 import { formatString } from "../utils/utils";
 
-const Ingredients: React.FC = () => {
+interface IngredientsProps {
+  mediaWidth: number;
+}
+
+const Ingredients: React.FC<IngredientsProps> = ({ mediaWidth }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
   const appState = useAppSelector((state) => state.appState);
   const { mealListLoaded } = useAppSelector((state) => state.appState);
-  const [ currentPageIng, setCurrentPageIng ] = useState<string>('none');
+  const [currentPageIng, setCurrentPageIng] = useState<string>("none");
   let ingredients: IngredientsT = useAppSelector((state) => state.ingredients);
 
   const outlet = useOutlet();
@@ -61,7 +65,10 @@ const Ingredients: React.FC = () => {
               <span
                 className="ingredient"
                 onClick={() => {
-                  if (formatString(ingredient.name) !== (mealListLoaded.name && currentPageIng)) {
+                  if (
+                    formatString(ingredient.name) !==
+                    (mealListLoaded.name && currentPageIng)
+                  ) {
                     dispatch(clearMealList());
                     dispatch(
                       updateMealListLoaded({
@@ -88,13 +95,15 @@ const Ingredients: React.FC = () => {
         </div>
       </section>
 
-      <section className="ingredients__col2">
-        {outlet || (
-          <h2>
-            Click a searched ingredient to display more information about it.
-          </h2>
-        )}
-      </section>
+      {mediaWidth > 700 && (
+        <section className="ingredients__col2">
+          {outlet || (
+            <h2>
+              Click a searched ingredient to display more information about it.
+            </h2>
+          )}
+        </section>
+      )}
     </main>
   );
 };

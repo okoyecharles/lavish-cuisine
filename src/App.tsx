@@ -10,9 +10,9 @@ import Meal from "./components/Meal";
 
 const App: React.FC = () => {
   const [mediaWidth, setMediaWidth] = useState<number>(0);
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     setMediaWidth(window.innerWidth);
-  })
+  });
   useEffect(() => {
     setMediaWidth(window.innerWidth);
   }, []);
@@ -22,9 +22,16 @@ const App: React.FC = () => {
       <Nav mediaWidth={mediaWidth} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/ingredients/" element={<Ingredients />}>
-          <Route path=":ingredient" element={<MealList />} />
-        </Route>
+        {mediaWidth > 700 ? (
+          <Route path="/ingredients/" element={<Ingredients mediaWidth={mediaWidth} />}>
+            <Route path=":ingredient" element={<MealList />} />
+          </Route>
+        ) : (
+          <>
+            <Route path="/ingredients" element={<Ingredients mediaWidth={mediaWidth} />} />
+            <Route path="/ingredients/:ingredient" element={<MealList />} />
+          </>
+        )}
         <Route path="/areas" element={<Areas />} />
         <Route path="/areas/:area" element={<MealList />} />
         <Route path="/meal/:meal" element={<Meal />} />
