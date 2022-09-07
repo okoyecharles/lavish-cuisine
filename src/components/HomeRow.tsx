@@ -13,12 +13,12 @@ interface Props {
 const FlipAnimation = keyframes`
   from {
     opacity: 0;
-    rotate: x -60deg;
+    transform: rotateX(-60deg);
   }
 
   to {
     opacity: 1;
-    rotate: x 0deg;
+    transform: rotateX(0);
   }
 `;
 

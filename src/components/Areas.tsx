@@ -13,12 +13,12 @@ import { useNavigate } from "react-router-dom";
 const FlipAnimation = keyframes`
   from {
     opacity: 0;
-    rotate: x -45deg;
+    transform: rotateX(-45deg);
   }
 
   to {
     opacity: 1;
-    rotate: x 0deg;
+    transform: rotateX(0);
   }
 `;
 

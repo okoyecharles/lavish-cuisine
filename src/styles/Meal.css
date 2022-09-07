@@ -49,7 +49,7 @@
   height: .1em;
   background: #c0841d;
   transform-origin: left;
-  scale: .9 1;
+  transform: scaleX(0.9);
 }
 
 .meal__measurementsContainer {
@@ -88,7 +88,7 @@
   height: .1em;
   background: #c0841d;
   transform-origin: left;
-  scale: .9 1;
+  transform: scaleX(0.9);
 }
 
 .meal__help {

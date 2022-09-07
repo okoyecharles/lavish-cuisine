@@ -10,8 +10,8 @@
   padding: 2em 1em;
 }
 
-.ingredients > * {
-  flex: 1;
+.ingredients :is(.ingredients__col2, .ingredients__col1) {
+  width: 50%;
 }
 
 .ingredients__header > input {
@@ -34,19 +34,19 @@
 .ingredients__header > input::-webkit-input-placeholder { color: #937645; }
 
 .ingredient {
-  background: rgba(255, 255, 255, 0.3);
+  background: #d3a96a;
   box-shadow: 0 0 0.25em #906213;
   padding: .25em .5em;
   border-radius: .35em;
   transition: 
-    scale .25s ease,
-    transform-origin .2s .2s ease
+  transform .25s ease,
+  transform-origin .2s .2s ease
   ;
   cursor: pointer;
 }
 
 .ingredient:hover {
-  scale: 1.1;
+  transform: scale(1.2);
   transform-origin: bottom;
 }
 

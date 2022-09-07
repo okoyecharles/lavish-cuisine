@@ -18,20 +18,20 @@
   box-shadow: 0 0 0.5em rgba(84, 58, 13, 0.7);
 
   transition: 
-  scale .25s ease-out,
+  transform .25s ease-out,
   box-shadow .25s ease-out,
   background-color .25s ease-in
   ;
 }
 
 .area:hover {
-  scale: 0.985;
+  transform: scale(0.985);
   box-shadow: 0 0 0.5em rgba(84, 58, 13, 0.7), inset 0 .5em .35em #c0841d21, inset 0 -.5em .35em #c0841d21;
   background-color: #fffbf5;
 }
 
 .area__forward {
-  background-color: #fff;  
+  background-color: #fff; 
   height: fit-content;
   display: grid;
   padding: .5em;
@@ -43,10 +43,10 @@
 }
 
 .area__forward > * {
-  translate: -0.5em;
+  transform: translateX(-0.5em);
   color:#c0841d;
   transition:
-    translate 0.35s ease,
+  transform 0.35s ease,
     color 0.1s ease-in,
   ;
 }
@@ -58,10 +58,10 @@
 }
 
 .area__forward:hover > * {
-  translate: 0;
+  transform: translateX(0);
   color: white;
   transition:
-    translate 0.35s ease,
+  transform 0.35s ease,
     color 0.1s 0.25s ease-in,
   ;
 }

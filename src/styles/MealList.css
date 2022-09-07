@@ -40,12 +40,12 @@
 .mealList__itemForward {
   margin: 1em;
   font-size: 2em;
-  transition: translate .25s ease;
+  transition: transform .25s ease;
   cursor: pointer;
 }
 
 .mealList__itemForward:hover {
-  translate: .25em;
+  transform: translateX(.25em);
 }
 
 .mealList__errorIcon {

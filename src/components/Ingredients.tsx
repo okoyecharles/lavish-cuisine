@@ -51,7 +51,7 @@ const Ingredients: React.FC<IngredientsProps> = ({ mediaWidth }) => {
         <div className="ingredients__header">
           <input
             type="text"
-            placeholder="Search an ingredient..."
+            placeholder="Search meals by ingredient..."
             value={searchValue}
             onChange={(event) => {
               setSearchValue(event.target.value);
@@ -89,14 +89,14 @@ const Ingredients: React.FC<IngredientsProps> = ({ mediaWidth }) => {
             <h3
               style={{ textAlign: "center", width: "100%", color: "#543a0d" }}
             >
-              Please input at least one letter to search
+              Please input at least a letter to search <br/> ...Then click on a searched ingredient
             </h3>
           )}
         </div>
       </section>
 
       {mediaWidth > 700 && (
-        <section className="ingredients__col2">
+        <section className="ingredients__col2" style={{flex: "1"}}>
           {outlet || (
             <h2>
               Click a searched ingredient to display more information about it.
