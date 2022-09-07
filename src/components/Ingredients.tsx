@@ -47,7 +47,7 @@ const Ingredients: React.FC<IngredientsProps> = ({ mediaWidth }) => {
 
   return (
     <main className="ingredients">
-      <section className="ingredients__col1">
+      <section className="ingredients__col1" style={mediaWidth > 700 ? {width: "50%"} : {flex: "1"}}>
         <div className="ingredients__header">
           <input
             type="text"
@@ -96,7 +96,7 @@ const Ingredients: React.FC<IngredientsProps> = ({ mediaWidth }) => {
       </section>
 
       {mediaWidth > 700 && (
-        <section className="ingredients__col2" style={{flex: "1"}}>
+        <section className="ingredients__col2" style={{width: "50%"}}>
           {outlet || (
             <h2>
               Click a searched ingredient to display more information about it.

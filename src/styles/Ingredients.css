@@ -10,9 +10,6 @@
   padding: 2em 1em;
 }
 
-.ingredients :is(.ingredients__col2, .ingredients__col1) {
-  width: 50%;
-}
 
 .ingredients__header > input {
   width: 100%;
