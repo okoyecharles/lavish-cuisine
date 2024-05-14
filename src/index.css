@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
+/* Core variables */
+:root {
+  --color-brown: #895C0E;
+  --color-brown-50: #C3AA80;
+  --color-brown-10: #F3ECDF;
+  --color-milk: #FDF9F2;
+
+  --screen-sm: 480px;
+  --screen-md: 788px;
+  --screen-lg: 1200px;
+
+  --max-content-width: var(--screen-lg);
+
+  --bezier-smooth: cubic-bezier(.79,.14,.15,.86);
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -57,6 +73,13 @@ select {
   font: inherit;
 }
 
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
@@ -70,5 +93,20 @@ select {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+
+.mobile-hidden {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-hidden {
+    display: inherit;
+  }
+
+  .desktop-hidden {
+    display: none !important;
   }
 }

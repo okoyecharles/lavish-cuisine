@@ -13,41 +13,65 @@ const Nav: React.FC<NavProps> = ({ mediaWidth }) => {
   const [navActive, setNavActive] = useState<boolean>(false);
   const navigate = useNavigate();
   return (
-    <header className="nav">
-      <div
-        className="nav__logo"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        <img src={Logo} alt="Lavish Cuisine" className="nav__logoImg" />
-        {mediaWidth > 700 && <p>Lavish Cuisine</p>}
-      </div>
-      {mediaWidth <= 500 && (
-        <VscMenu
-          className="nav__toggleOpen"
+    <div className="nav__container">
+      <header>
+        <div className="nav__logo" onClick={() => navigate("/")}>
+          <img src={Logo} alt="Logo" />
+        </div>
+        <button
+          className="nav__open desktop-hidden"
+          aria-label="Open menu"
+          aria-controls="nav-menu"
+          aria-expanded={navActive}
           onClick={() => {
             setNavActive(true);
           }}
-        />
-      )}
-      <nav
-        className={navActive ? "nav__menu active" : "nav__menu"}
-        aria-roledescription="main navigation"
-      >
-        <ul className="nav__links">
-          <NavLink to="/" onClick={() => setNavActive(false)}>Home</NavLink>
-          <NavLink to="/ingredients" onClick={() => setNavActive(false)}>Ingredients</NavLink>
-          <NavLink to="/areas" onClick={() => setNavActive(false)}>Areas</NavLink>
-        </ul>
-        {mediaWidth <= 500 && (
-          <AiOutlineClose
-            className="nav__toggleClose"
+        >
+          <VscMenu />
+        </button>
+        <nav
+          id="nav-menu"
+          className={`nav__menu ${navActive ? "active" : ""}`}
+          aria-hidden={!navActive}
+        >
+          <ul className="nav__links">
+            <li>
+              <NavLink
+                to="/"
+                onClick={() => setNavActive(false)}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/ingredients"
+                onClick={() => setNavActive(false)}
+              >
+                Ingredients
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/areas"
+                onClick={() => setNavActive(false)}
+              >
+                Areas
+              </NavLink>
+            </li>
+          </ul>
+          <button
+            className="nav__close desktop-hidden"
+            aria-label="Close menu"
+            aria-controls="nav-menu"
+            aria-expanded={navActive}
             onClick={() => setNavActive(false)}
-          />
-        )}
-      </nav>
-    </header>
+          >
+            <AiOutlineClose />
+          </button>
+        </nav>
+      </header>
+    </div>
   );
 };
 
