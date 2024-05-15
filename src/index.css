@@ -9,7 +9,7 @@
 
   --screen-sm: 480px;
   --screen-md: 788px;
-  --screen-lg: 1200px;
+  --screen-lg: 1280px;
 
   --max-content-width: var(--screen-lg);
 
@@ -24,7 +24,8 @@
 }
 
 *::selection {
-  background: #c0841d67;
+  background: hsl(38, 81%, 20%);
+  color: var(--color-milk);
 }
 
 
@@ -34,6 +35,7 @@
   margin: 0;
   font-family: 'Lato', sans-serif;
 }
+
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role='list'],

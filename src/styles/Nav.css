@@ -3,9 +3,13 @@
 .nav__container {
   display: grid;
   place-items: center;
+  z-index: 5;
 
   background-color: var(--color-milk);
-  box-shadow: 0 0 0 1px var(--color-brown);
+  border-bottom: 1px var(--color-brown) solid;
+
+  position: sticky;
+  top: 0px;
 
   header {
     display: flex;
@@ -92,6 +96,7 @@
     right: 1rem;
 
     background-color: var(--color-brown-10);
+    font-size: 1.25rem;
     border-radius: 24px;
 
     transform: translateX(calc(100% + 1rem));

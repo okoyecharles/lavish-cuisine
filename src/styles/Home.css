@@ -1,15 +1,155 @@
-.home {
-  background: #c0841d;
-  padding: 2em 1em;
-  max-width: 125em;
-  margin-inline: auto;
+.home__container {
+  background: white;
+  display: grid;
+  place-items: center;
 }
 
-@media screen and (max-width: 700px) {
+.home {
+  margin-block: 3rem;
+  padding-inline: 1rem;
+  width: 100%;
+  max-width: var(--max-content-width);
+
+  display: grid;
+  gap: 2rem;
+}
+
+.home__row {
+  border-radius: .25rem;
+  box-shadow: 0 0 0 1px var(--color-brown);
+  background-color: var(--color-milk);
+  overflow: hidden;
+}
+
+.home__row header {
+  background: var(--color-brown);
+  padding: .5rem 1rem;
+  
+  h2 {
+    color: var(--color-milk);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+.home__row ul {
+  padding: 0;
+  display: flex;
+  overflow-x: scroll;
+
+  li::marker {
+    font-size: 0;
+  }
+}
+
+.meal__card {
+  --size: 192px;
+  height: var(--size);
+  width: var(--size);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  
+  box-shadow:  0 0 0 1px red inset;
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+
+    transition: transform 350ms ease;
+  }
+}
+
+.meal__card:hover {
+  img {
+    transform: translateX(-50%) translateY(-50%) scale(1.025);
+  }
+}
+
+
+.homeRow__items > * > .mealCard__content {
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(2.5em);
+  transition: 
+    .0s ease-in
+  ;
+}
+
+.homeRow__items > *:hover > .mealCard__content {
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    .5s ease-out
+  ;
+}
+
+.homeRow__items > * > .mealCard__content > .mealCard__arrow {
+  font-size: 2em;
+  padding: .25em;
+  background-color: transparent;
+  border-radius: .1em;
+  transform: translateX(-1em);
+  opacity: 0;
+  transition: .25s ease-out;
+}
+
+.homeRow__items > *:hover > .mealCard__content > .mealCard__arrow {
+  transition: 
+    opacity .75s 0s ease,
+    background-color 1s .0s ease,
+    transform .5s .25s ease,
+    box-shadow .25s ease,
+  ;
+  background: #bf841d;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.homeRow__items > *:hover {
+  aspect-ratio: 2;
+  -moz-box-shadow: inset 0 15em rgba(0, 0, 0, .5);
+  -webkit-box-shadow: inset 0 15em rgba(0, 0, 0, .5);
+  box-shadow: inset 0 15em rgba(0, 0, 0, .5);
+}
+
+.homeRow__items > *:hover > .mealCard__content > .mealCard__title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.homeRow__items > *:hover > .mealCard__content > .mealCard__arrow:hover {
+  transform: scale(1.1);
+  -moz-box-shadow: 0 0 .25em #00000050;
+  -webkit-box-shadow: 0 0 .25em #00000050;
+  box-shadow: 0 0 .25em #00000050;
+  transition: .25s ease-in;
+}
+
+@media screen and (min-width: 768px) {
   .home {
-    background: #c0841d;
-    padding: 2em 0;
-    max-width: 125em;
-    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .home__row header {
+    padding: .75rem 1.5rem;
+    
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+
+  .meal__card {
+    --size: 256px;
   }
 }

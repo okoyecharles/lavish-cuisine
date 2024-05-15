@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useAppSelector } from "../hooks";
-import { fetchMealInfo } from "../redux/actions";
-import { MealT } from "./Models";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { AiFillYoutube } from "react-icons/ai";
 import { BsJournalBookmark } from "react-icons/bs";
 import { GiChefToque } from "react-icons/gi";
 import "../styles/Meal.css";
-import { getIngredientMaterials, isValidString } from "../utils/utils";
+import { isValidString } from "../utils/utils";
 import { TailSpin } from "react-loader-spinner";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -18,6 +16,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { fetchDetailedMeal } from "../redux/features/meals/mealSlice";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,94 +49,19 @@ function createData(ingredient: string, measurement: string) {
   return { ingredient, measurement };
 }
 
-
-
 const Meal: React.FC = () => {
-  const params = useParams<string>();
-  const dispatch = useDispatch<any>();
+  const params = useParams();
+  const dispatch = useAppDispatch();
+  const meal = useAppSelector((state) => state.meal);
 
-  const meal: MealT = useAppSelector((state) => state.meal);
-
-  const rows = [
-    ...getIngredientMaterials(meal).map(pair => createData(pair[0], pair[1]))
-  ];
-
-  const [showMore, setShowMore] = useState<boolean>(false);
-
+  const [showFullInstructions, setShowFullInstructions] = useState<boolean>(false);
   useEffect(() => {
-    dispatch(fetchMealInfo(params.meal));
+    dispatch(fetchDetailedMeal({ name: params.meal! }));
   }, []);
 
   return (
     <main className="meal">
-      {Object.entries(meal).length ? (
-        <>
-          <header className="meal__header">
-            <h1>{meal?.strMeal}</h1>
-            <span>{meal?.strArea}</span>
-          </header>
-          <section className="meal__measurements">
-            <h2>Requirements</h2>
-            <div >
-              <TableContainer component={Paper} className="meal__measurementsContainer">
-                <Table sx={{ minWidth: 100 }} aria-label="measurements table" >
-                  <TableHead>
-                    <TableRow>
-                      <StyledTableCell>Ingredient</StyledTableCell>
-                      <StyledTableCell>Measurement</StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <StyledTableRow key={row.ingredient}>
-                        <StyledTableCell component="th" scope="row">
-                          {row.ingredient}
-                        </StyledTableCell>
-                        <StyledTableCell>{row.measurement}</StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </div>
-          </section>
-          <section className="meal__instructions">
-            <h2>
-              Preparation <GiChefToque />
-            </h2>
-            <div className="meal__instructionsContainer">
-              {showMore
-                ? meal?.strInstructions
-                : meal?.strInstructions.substring(0, 500)}
-              <div
-                onClick={() => {
-                  setShowMore((prevState) => !prevState);
-                }}
-              >
-                {showMore ? "show less" : "show more..."}
-              </div>
-            </div>
-          </section>
-          {(isValidString(meal.strYoutube) ||
-            isValidString(meal.strSource)) && (
-            <section className="meal__help">
-              <h2>Still Confused?</h2>
-              <div>
-                {isValidString(meal.strYoutube) && (
-                  <a href={meal.strYoutube} target="_blank" rel="norefferrer">
-                    <AiFillYoutube />
-                  </a>
-                )}
-                {isValidString(meal.strSource) && (
-                  <a href={meal.strSource} target="_blank" rel="norefferrer">
-                    <BsJournalBookmark />
-                  </a>
-                )}
-              </div>
-            </section>
-          )}
-        </>
-      ) : (
+      {meal.status === "pending" ? (
         <TailSpin
           height="150"
           width="150"
@@ -152,7 +76,75 @@ const Meal: React.FC = () => {
           wrapperClass=""
           visible={true}
         />
-      )}
+      ) : meal.data ? (
+        <>
+          <header className="meal__header">
+            <h1>{meal.data.name}</h1>
+            <span>{meal.data.area}</span>
+          </header>
+          <section className="meal__measurements">
+            <h2>Requirements</h2>
+            <div>
+              <TableContainer component={Paper} className="meal__measurementsContainer">
+                <Table sx={{ minWidth: 100 }} aria-label="measurements table">
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell>Ingredient</StyledTableCell>
+                      <StyledTableCell>Measurement</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {meal.data.ingredients_measurements.map(
+                      ([ingredient, measurement]) => (
+                        <StyledTableRow key={ingredient}>
+                          <StyledTableCell component="th" scope="row">
+                            {ingredient}
+                          </StyledTableCell>
+                          <StyledTableCell>{measurement}</StyledTableCell>
+                        </StyledTableRow>
+                      )
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          </section>
+          <section className="meal__instructions">
+            <h2>
+              Preparation <GiChefToque />
+            </h2>
+            <div className="meal__instructionsContainer">
+              {!showFullInstructions
+                ? meal.data.instructions?.substring(0, 500)
+                : meal.data.instructions}
+              <div
+                onClick={() => {
+                  setShowFullInstructions((prevState) => !prevState);
+                }}
+              >
+                {showFullInstructions ? "show less" : "show more..."}
+              </div>
+            </div>
+          </section>
+          {(isValidString(meal.data.youtube) || isValidString(meal.data.cookbook)) && (
+            <section className="meal__help">
+              <h2>Still Confused?</h2>
+              <div>
+                {meal.data.youtube && (
+                  <a href={meal.data.youtube} target="_blank" rel="norefferrer">
+                    <AiFillYoutube />
+                  </a>
+                )}
+                {meal.data.cookbook && (
+                  <a href={meal.data.cookbook} target="_blank" rel="norefferrer">
+                    <BsJournalBookmark />
+                  </a>
+                )}
+              </div>
+            </section>
+          )}
+        </>
+      ) : null}
     </main>
   );
 };

@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { v4 } from "uuid";
-import { useAppSelector } from "../hooks";
-import { clearMealList, fetchAreas, updateAreasLoaded } from "../redux/actions";
-import { AreasT } from "./Models";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import "../styles/Areas.css";
 import { keyframes } from "@emotion/react";
 import { Reveal } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
+import { fetchAreas } from "../redux/features/areas/areasSlice";
+import { clearMeals } from "../redux/features/meals/mealsSlice";
+import { formatString } from "../utils/utils";
 
 const FlipAnimation = keyframes`
   from {
@@ -22,33 +22,28 @@ const FlipAnimation = keyframes`
   }
 `;
 
-
-
-
 const Areas: React.FC = () => {
   const navigate = useNavigate();
-  const areas: AreasT = useAppSelector((state) => state.areas);
-  const appState = useAppSelector((state) => state.appState);
-
-  const dispatch = useDispatch<any>();
+  const areas = useAppSelector((state) => state.areas);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (appState.areasLoaded) return;
-    dispatch(fetchAreas());
-    dispatch(updateAreasLoaded());
-  }, [appState.areasLoaded]);
+    if (areas.status !== "fulfilled") {
+      dispatch(fetchAreas());
+    }
+  }, []);
 
   return (
     <main className="areas">
       <Reveal triggerOnce keyframes={FlipAnimation} delay={250}>
-        {areas?.map((area) => (
-          <div className="area" key={v4()}>
+        {areas.data.map((area) => (
+          <div className="area" key={area.id}>
             <h2>{area.name}</h2>
             <div
               className="area__forward"
               onClick={() => {
-                  dispatch(clearMealList());
-                  navigate(`./${area.name.toLowerCase()}`);
+                dispatch(clearMeals());
+                navigate(`./${formatString(area.name)}`);
               }}
             >
               <IoArrowForwardOutline />

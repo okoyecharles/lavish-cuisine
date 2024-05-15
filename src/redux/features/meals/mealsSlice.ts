@@ -30,7 +30,8 @@ const mealsSlice = createSlice({
   initialState,
   reducers: {
     clearMeals: (state) => {
-      state = initialState
+      state.data = initialState.data;
+      state.status = { ...initialState.status };
     }
   },
   extraReducers: (builder) => {

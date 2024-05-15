@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../images/Logo.png";
 import { VscMenu } from "react-icons/vsc";
-import { AiOutlineClose } from "react-icons/ai";
+import { GrClose } from "react-icons/gr";
 import "../styles/Nav.css";
 
 interface NavProps {
@@ -67,7 +67,7 @@ const Nav: React.FC<NavProps> = ({ mediaWidth }) => {
             aria-expanded={navActive}
             onClick={() => setNavActive(false)}
           >
-            <AiOutlineClose />
+            <GrClose />
           </button>
         </nav>
       </header>

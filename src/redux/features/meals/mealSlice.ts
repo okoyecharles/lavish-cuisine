@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { FetchState, Meal } from "../types";
+import { FetchState } from "../types";
 import { DetailedMeal, FetchedDetailedMeal } from "./types";
 import { formatMealDetails } from "./formatData";
 

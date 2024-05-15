@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import Nav from "./components/Nav";
 import Ingredients from "./components/Ingredients";
 import Areas from "./components/Areas";
@@ -18,7 +18,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="App">
+    <>
       <Nav mediaWidth={mediaWidth} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -43,7 +43,7 @@ const App: React.FC = () => {
         <Route path="/meal/:meal" element={<Meal />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </div>
+    </>
   );
 };
 
