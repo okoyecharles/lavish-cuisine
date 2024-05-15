@@ -22,7 +22,7 @@ const Home: React.FC = () => {
         setTimeout(() => dispatch(fetchMealsByCategory({ filterValue: category.category.name })), 25);
       })
     }
-  }, [categories.data.length]);
+  }, [categories.data]);
 
   return (
     <div className="home__container">

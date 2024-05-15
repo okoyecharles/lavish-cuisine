@@ -15,19 +15,21 @@
 }
 
 .home__row {
+  --size: 192px;
+
   border-radius: .25rem;
-  box-shadow: 0 0 0 1px var(--color-brown);
+  box-shadow: 0 0 0 .5px var(--color-brown);
   background-color: var(--color-milk);
   overflow: hidden;
 }
 
-.home__row header {
+.home__row > header {
   background: var(--color-brown);
   padding: .5rem 1rem;
   
   h2 {
     color: var(--color-milk);
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
   }
 }
@@ -42,98 +44,121 @@
   }
 }
 
+.home__row-loader {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: var(--size);
+
+  svg {
+    height: var(--size);
+  }
+}
+
 .meal__card {
-  --size: 192px;
+  --padding: .75rem;
   height: var(--size);
   width: var(--size);
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  
-  box-shadow:  0 0 0 1px red inset;
 
   img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%) scale(1);
+    transform: translateX(-50%) translateY(-50%) scale(1.05);
     width: 100%;
     height: 100%;
     z-index: -10;
 
     transition: transform 350ms ease;
   }
-}
 
-.meal__card:hover {
-  img {
-    transform: translateX(-50%) translateY(-50%) scale(1.025);
+  header {
+    font-size: 14px;
+    height: 100%;
+    padding: var(--padding);
+    display: flex;
+    align-items: flex-end;
+    color: var(--color-brown-30);
+    background-color: transparent;
+    position: relative;
+    isolation: isolate;
+
+    
+    &::after {
+      z-index: -10;
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        hsla(38, 81%, 15%, 0.6),
+        60%,
+        hsla(38, 81%, 10%, 0.9)
+      );
+      opacity: 0;
+      transition: opacity 350ms ease;
+    }
+
+    h3 {
+      opacity: 0;
+      transform: translateY(var(--padding));
+
+      transition:
+        opacity 350ms ease,
+        transform 350ms ease
+      ;
+    }
+  }
+
+  button {
+    --size: 36px;
+    position: absolute;
+    top: var(--padding);
+    right: var(--padding);
+    height: var(--size);
+    width: calc(var(--size) * 1.25);
+    
+    color: var(--color-brown);
+    background-color: var(--color-brown-10);
+    border-radius: calc(var(--size) * .5);
+
+    display: grid;
+    place-content: center;
+
+    opacity: 0;
+
+    transition:
+      background-color 100ms ease,
+      opacity 150ms ease
+    ;
+  }
+
+  button:hover {
+    background-color: white;
   }
 }
 
+.meal__card:hover, .meal__card:focus-within {
+  header {
+    &::after {
+      opacity: 1;
+    }
 
-.homeRow__items > * > .mealCard__content {
-  display: flex;
-  gap: 1.5em;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  opacity: 0;
-  transform: translateY(2.5em);
-  transition: 
-    .0s ease-in
-  ;
-}
+    h3 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-.homeRow__items > *:hover > .mealCard__content {
-  transform: translateY(0);
-  opacity: 1;
-  transition:
-    .5s ease-out
-  ;
-}
+  button {
+    opacity: 1;
+  }
 
-.homeRow__items > * > .mealCard__content > .mealCard__arrow {
-  font-size: 2em;
-  padding: .25em;
-  background-color: transparent;
-  border-radius: .1em;
-  transform: translateX(-1em);
-  opacity: 0;
-  transition: .25s ease-out;
-}
-
-.homeRow__items > *:hover > .mealCard__content > .mealCard__arrow {
-  transition: 
-    opacity .75s 0s ease,
-    background-color 1s .0s ease,
-    transform .5s .25s ease,
-    box-shadow .25s ease,
-  ;
-  background: #bf841d;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.homeRow__items > *:hover {
-  aspect-ratio: 2;
-  -moz-box-shadow: inset 0 15em rgba(0, 0, 0, .5);
-  -webkit-box-shadow: inset 0 15em rgba(0, 0, 0, .5);
-  box-shadow: inset 0 15em rgba(0, 0, 0, .5);
-}
-
-.homeRow__items > *:hover > .mealCard__content > .mealCard__title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.homeRow__items > *:hover > .mealCard__content > .mealCard__arrow:hover {
-  transform: scale(1.1);
-  -moz-box-shadow: 0 0 .25em #00000050;
-  -webkit-box-shadow: 0 0 .25em #00000050;
-  box-shadow: 0 0 .25em #00000050;
-  transition: .25s ease-in;
+  img {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -141,7 +166,11 @@
     padding-inline: 1.5rem;
   }
 
-  .home__row header {
+  .home__row {
+    --size: 256px;
+  }
+
+  .home__row > header {
     padding: .75rem 1.5rem;
     
     h2 {
@@ -150,6 +179,9 @@
   }
 
   .meal__card {
-    --size: 256px;
+    --padding: 1rem;
+    header {
+      font-size: 16px;
+    }
   }
 }

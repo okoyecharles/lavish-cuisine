@@ -26,26 +26,19 @@ const FlipAnimation = keyframes`
 `;
 
 const HomeRow: React.FC<Props> = ({ category: { category, meals } }) => {
-  const homeRowLoadingStyles: React.CSSProperties = {
-    display: "grid",
-    placeItems: "center",
-  };
   return (
     <section className="home__row">
       <header>
         <h2>{category.name}</h2>
       </header>
-      <ul style={meals.length ? {} : homeRowLoadingStyles}>
+      <ul data-loading={!meals.length}>
         {meals.length ? (
           meals.map((meal) => <MealCard meal={meal} key={meal.id} />)
         ) : (
-          <li>
+          <li className="home__row-loader" aria-label="loading meals">
             <ThreeDots
-              height="150"
-              width="150"
               radius="9"
               color="#c0841d"
-              ariaLabel="three-dots-loading"
               wrapperStyle={{}}
               visible={true}
             />

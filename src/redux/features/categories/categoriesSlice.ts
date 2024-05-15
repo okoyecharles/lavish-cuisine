@@ -50,7 +50,6 @@ const categoriesSlice = createSlice({
           meals: [] as Array<Meal>
         };
         state.data.push(newCategory);
-        console.log(newCategory.category.id, newCategory.category.name, state.data.length - 1);
       })
     });
 
