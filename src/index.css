@@ -4,6 +4,7 @@
 :root {
   --color-milk-brown: #c28419;
   --color-brown: #8a5d0f;
+  --color-brown-70: #AC8B52;
   --color-brown-50: #C3AA80;
   --color-brown-30: #DACAAE;
   --color-brown-10: #F3ECDF;
@@ -18,6 +19,43 @@
   --bezier-smooth: cubic-bezier(.79,.14,.15,.86);
 
   --nav-height: 80px;
+}
+
+html {
+  --scrollbar-bg: var(--color-brown-10);
+  --scrollbar-border: transparent;
+  --scrollbar-thumb-bg: var(--color-brown-30);
+  --scrollbar-thumb-border: var(--color-brown-70);
+  --scrollbar-thumb-hover-bg: var(--color-brown-50);
+  --scrollbar-thumb-hover-border: var(--color-brown);
+
+  --input-autofill-color: #bbb;
+}
+
+::-webkit-scrollbar {
+  width: 18px;
+  background-color: var(--scrollbar-bg);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0 1px var(--scrollbar-border);
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border: solid 4px transparent;
+  box-shadow:
+  inset 0 0 0 1px var(--scrollbar-thumb-border), 
+  inset 0 0 0 8px var(--scrollbar-thumb-bg);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  box-shadow:
+  inset 0 0 0 1px var(--scrollbar-thumb-hover-border),
+  inset 0 0 0 8px var(--scrollbar-thumb-hover-bg);
 }
 
 /* Box sizing rules */

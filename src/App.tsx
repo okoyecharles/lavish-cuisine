@@ -7,34 +7,22 @@ import Areas from "./components/Areas";
 import MealList from "./components/MealList";
 import Meal from "./components/Meal";
 import PageNotFound from "./components/PageNotFound";
+import useMediaWidth from "./hooks/useMediaWidth";
 
 const App: React.FC = () => {
-  const [mediaWidth, setMediaWidth] = useState<number>(0);
-  window.addEventListener("resize", () => {
-    setMediaWidth(window.innerWidth);
-  });
-  useEffect(() => {
-    setMediaWidth(window.innerWidth);
-  }, []);
-
+  const mediaWidth = useMediaWidth();
   return (
     <>
-      <Nav mediaWidth={mediaWidth} />
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         {mediaWidth > 700 ? (
-          <Route
-            path="/ingredients/"
-            element={<Ingredients />}
-          >
+          <Route path="/ingredients/" element={<Ingredients />}>
             <Route path=":ingredient" element={<MealList />} />
           </Route>
         ) : (
           <>
-            <Route
-              path="/ingredients"
-              element={<Ingredients />}
-            />
+            <Route path="/ingredients" element={<Ingredients />} />
             <Route path="/ingredients/:ingredient" element={<MealList />} />
           </>
         )}

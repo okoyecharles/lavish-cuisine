@@ -5,11 +5,7 @@ import { VscMenu } from "react-icons/vsc";
 import { GrClose } from "react-icons/gr";
 import "../styles/Nav.css";
 
-interface NavProps {
-  mediaWidth: number;
-}
-
-const Nav: React.FC<NavProps> = ({ mediaWidth }) => {
+const Nav: React.FC = () => {
   const [navActive, setNavActive] = useState<boolean>(false);
   const navigate = useNavigate();
   return (
