@@ -1,8 +1,6 @@
 import React from "react";
-import "../../styles/MealCard.css";
-import { MdArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { formatString } from "../../utils/utils";
+import { toSnakeCase } from "../../utils/utils";
 import { clearMeal } from "../../redux/features/meals/mealSlice";
 import { useAppDispatch } from "../../hooks/redux";
 import { Meal } from "../../redux/features/types";
@@ -27,12 +25,12 @@ const MealCard: React.FC<Props> = ({ meal }) => {
           aria-label={`view recipe - ${meal.name}`}
           onClick={() => {
             dispatch(clearMeal());
-            navigate(`/meal/${formatString(meal.name)}`);
+            navigate(`/meal/${toSnakeCase(meal.name)}`);
           }}
         >
           <FaArrowRightLong />
         </button>
-        <img src={`${meal.thumbnail}/preview`} alt={meal.name} />
+        <img src={`${meal.thumbnail}/preview`} alt={toSnakeCase(meal.name)} />
       </div>
     </li>
   );

@@ -1,98 +1,161 @@
-.mealList {
+.meal__list {
+  padding: 1.5rem 1rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  list-style-type: none;
-  padding: 1em;
-}
 
-.mealList__back {
-  font-weight: 300;
-  text-decoration: underline;
-  font-size: 1.25em;
-  color: #825914;
-  padding: .5em 1em;
-}
-
-.mealList__item {
-  display: flex;
-  align-items: center;
-  gap: .5em;
-  justify-content: space-between;
-  height: 7.5em;
-  background: #bf841d69;
-  border-radius: .5em;
-  overflow: hidden;
-  box-shadow: inset 0 0 0 0.05em #bf841d;
-}
-
-.mealList__item h3 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.mealList__item > img {
-  height: 15em;
-  align-self: baseline;
-}
-
-.mealList__itemForward {
-  margin: 1em;
-  font-size: 2em;
-  transition: transform .25s ease;
-  cursor: pointer;
-}
-
-.mealList__itemForward:hover {
-  transform: translateX(.25em);
-}
-
-.mealList__errorIcon {
-  font-size: 10em;
-  color: #c0841d;
-  margin-inline: auto;
-}
-
-.mealList__errorMessage {
-  font-weight: 400;
-  margin-inline: auto;
-}
-
-@media screen and (max-width: 1100px) {
-  .mealList__item > img {
-    height: 7.5em;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .mealList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(13.5em, 1fr));
+  .back-button {
+    color: var(--color-brown);
+    text-decoration: underline;
+    margin-bottom: .5rem;
   }
 
-  .mealList__item {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
+  ul {
     padding: 0;
-    height: fit-content;
-    box-shadow: 0 0 .35em #774e0735;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
   }
 
-  .mealList__item > img {
-    height: 100%;
-    grid-column: span 4;
+  ul li::marker {
+    font-size: 0px;
   }
-  
-  .mealList__item > h3 {
-    grid-column: span 3;
-    padding: .5em 0 .5em .5em;
+}
+
+.meal__listInfo {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  p {
+    display: flex;
+    align-items: center;
   }
 
-  .mealList__itemForward {
-    font-size: 1.25em;
-    justify-self: center;
-    margin: 0;
+  p span {
+    color: var(--color-brown);
+    background-color: var(--color-brown-10);
+    padding: .25rem 1rem;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 14px;
+  }
+}
+
+.meal__item {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-brown-10);
+  box-shadow: 0 0 0 1px var(--color-brown);
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.meal__item-image {
+  --size: 256px;
+  height: var(--size);
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    height: var(--size);
+    width: 100%;
+    object-fit: cover;
+    object-position: center; 
+  }
+}
+
+.meal__item-content {
+  padding: .75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+
+  h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--color-brown);
+    font-size: 1.1rem;
+  }
+
+  button {
+    --size: 32px;
+    height: var(--size);
+    width: calc(var(--size) * 1.5);
+    
+    color: var(--color-milk);
+    background-color: var(--color-milk-brown);
+    border-radius: calc(var(--size) * .5);
+
+    display: grid;
+    place-content: center;
+
+    transition:
+      background-color 100ms ease,
+      opacity 150ms ease
+    ;
+  }
+
+  button:hover {
+    background-color: var(--color-brown);
+  }
+}
+
+.meal__list-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 128px;
+
+  svg {
+    font-size: 8rem;
+    color: var(--color-milk-brown);
+  }
+
+  p {
+    color: var(--color-brown);
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .meal__list {
+    ul {
+      gap: 1.5rem;
+    }
+  }
+
+  .meal__item {
+    flex-direction: row;
+  }
+
+  .meal__item-image {
+    --size: 150px;
+    width: var(--size);
+    height: auto;
+
+    img {
+      width: var(--size);
+      height: 100%;
+    }
+  }
+
+  .meal__item-content {
+    padding: 1rem 1.25rem;
+    flex: 1;
+    justify-content: space-between;
+     
+    button {
+      margin-left: auto;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .meal__item-image {
+    --size: 180px;
   }
 }

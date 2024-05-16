@@ -8,7 +8,7 @@ import { Reveal } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
 import { fetchAreas } from "../redux/features/areas/areasSlice";
 import { clearMeals } from "../redux/features/meals/mealsSlice";
-import { formatString } from "../utils/utils";
+import { toSnakeCase } from "../utils/utils";
 
 const FlipAnimation = keyframes`
   from {
@@ -42,8 +42,7 @@ const Areas: React.FC = () => {
             <div
               className="area__forward"
               onClick={() => {
-                dispatch(clearMeals());
-                navigate(`./${formatString(area.name)}`);
+                navigate(`./${toSnakeCase(area.name)}`);
               }}
             >
               <IoArrowForwardOutline />

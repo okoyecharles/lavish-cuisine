@@ -25,7 +25,7 @@ const App: React.FC = () => {
         {mediaWidth > 700 ? (
           <Route
             path="/ingredients/"
-            element={<Ingredients mediaWidth={mediaWidth} />}
+            element={<Ingredients />}
           >
             <Route path=":ingredient" element={<MealList />} />
           </Route>
@@ -33,7 +33,7 @@ const App: React.FC = () => {
           <>
             <Route
               path="/ingredients"
-              element={<Ingredients mediaWidth={mediaWidth} />}
+              element={<Ingredients />}
             />
             <Route path="/ingredients/:ingredient" element={<MealList />} />
           </>

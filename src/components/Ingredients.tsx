@@ -2,16 +2,12 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import "../styles/Ingredients.css";
 import { useNavigate, useOutlet } from "react-router-dom";
-import { formatString } from "../utils/utils";
+import { toSnakeCase } from "../utils/utils";
 import { fetchIngredients } from "../redux/features/ingredients/ingredientsSlice";
 import { Ingredient } from "../redux/features/ingredients/types";
 import { clearMeals } from "../redux/features/meals/mealsSlice";
 
-interface IngredientsProps {
-  mediaWidth: number;
-}
-
-const Ingredients: React.FC<IngredientsProps> = ({ mediaWidth }) => {
+const Ingredients = () => {
   const outlet = useOutlet();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -20,7 +16,7 @@ const Ingredients: React.FC<IngredientsProps> = ({ mediaWidth }) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const searchedIngredients = useMemo(() => {
     const matchesSearch = (ingredient: Ingredient) => {
-      return ingredient.name.toLowerCase().includes(searchValue.toLowerCase());
+      return ingredient.name.toLowerCase().includes(searchValue.trim().toLowerCase());
     };
     return ingredients.data.filter(matchesSearch);
   }, [searchValue]);
@@ -31,60 +27,44 @@ const Ingredients: React.FC<IngredientsProps> = ({ mediaWidth }) => {
     }
   }, []);
 
-  const ingredientsStyles: React.CSSProperties = {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: ".5em",
-  };
-
   return (
     <main className="ingredients">
-      <section
-        className="ingredients__col1"
-        style={mediaWidth > 700 ? { width: "50%" } : { flex: "1" }}
-      >
-        <div className="ingredients__header">
+      <section className="ingredients__col1">
+        <header className="ingredients__header">
           <input
             type="text"
-            placeholder="Search meals by ingredient..."
+            placeholder="Search Ingredients"
             value={searchValue}
             onChange={(event) => {
               setSearchValue(event.target.value);
             }}
           />
-        </div>
+        </header>
 
-        <div className="ingredients__container" style={ingredientsStyles}>
-          {searchValue.length > 0 &&
+        <div className="ingredients__container">
+          {searchValue.trim().length <= 0 ? (
+            <p>Click on a searched ingredient</p>
+          ) : searchedIngredients.length === 0 ? (
+            <p>No ingredient matches your search</p>
+          ) : (
             searchedIngredients.map((ingredient) => (
-              <span
+              <button
                 key={ingredient.id}
                 className="ingredient"
                 onClick={() => {
-                  // TODO: prevent reload for the same ingredient
-                  dispatch(clearMeals());
-                  navigate(`./${formatString(ingredient.name)}`);
+                  navigate(`./${toSnakeCase(ingredient.name)}`);
                 }}
               >
                 {ingredient.name}
-              </span>
-            ))}
-          {searchValue.length <= 0 && (
-            <h3 style={{ textAlign: "center", width: "100%", color: "#543a0d" }}>
-              Please input at least a letter to search <br /> ...Then click on a searched
-              ingredient
-            </h3>
+              </button>
+            ))
           )}
         </div>
       </section>
 
-      {mediaWidth > 700 && (
-        <section className="ingredients__col2" style={{ width: "50%" }}>
-          {outlet || (
-            <h2>Click a searched ingredient to display more information about it.</h2>
-          )}
-        </section>
-      )}
+      <div className="ingredients__col2 mobile-hidden">
+        {outlet || <p>Meals cooked with selected ingredient will display here</p>}
+      </div>
     </main>
   );
 };

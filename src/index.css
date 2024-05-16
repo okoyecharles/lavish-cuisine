@@ -2,7 +2,8 @@
 
 /* Core variables */
 :root {
-  --color-brown: #895C0E;
+  --color-milk-brown: #c28419;
+  --color-brown: #8a5d0f;
   --color-brown-50: #C3AA80;
   --color-brown-30: #DACAAE;
   --color-brown-10: #F3ECDF;
@@ -15,6 +16,8 @@
   --max-content-width: var(--screen-lg);
 
   --bezier-smooth: cubic-bezier(.79,.14,.15,.86);
+
+  --nav-height: 80px;
 }
 
 /* Box sizing rules */
@@ -25,8 +28,8 @@
 }
 
 *::selection {
-  background: hsl(38, 81%, 20%);
-  color: var(--color-milk);
+  background: hsl(212, 93%, 50%);
+  color: white;
 }
 
 
@@ -66,6 +69,12 @@ img,
 picture {
   max-width: 100%;
   display: block;
+}
+
+img {
+  color: var(--color-brown-30);
+  font-weight: 600;
+  font-size: 1.25rem;
 }
 
 /* Inherit fonts for inputs and buttons */
