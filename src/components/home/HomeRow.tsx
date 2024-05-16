@@ -1,8 +1,6 @@
 import React from "react";
 import MealCard from "./MealCard";
 import { ThreeDots } from "react-loader-spinner";
-import { keyframes } from "@emotion/react";
-import { Reveal } from "react-awesome-reveal";
 import { Category } from "../../redux/features/categories/types";
 import { Meal } from "../../redux/features/types";
 
@@ -12,18 +10,6 @@ interface Props {
     meals: Meal[];
   };
 }
-
-const FlipAnimation = keyframes`
-  from {
-    opacity: 0;
-    transform: rotateX(-60deg);
-  }
-
-  to {
-    opacity: 1;
-    transform: rotateX(0);
-  }
-`;
 
 const HomeRow: React.FC<Props> = ({ category: { category, meals } }) => {
   return (

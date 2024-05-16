@@ -58,6 +58,7 @@
   height: var(--size);
   width: 100%;
   overflow: hidden;
+  background-color: var(--color-brown-30);
 
   img {
     height: var(--size);

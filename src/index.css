@@ -23,7 +23,7 @@
 
 html {
   --scrollbar-bg: var(--color-brown-10);
-  --scrollbar-border: transparent;
+  --scrollbar-border: var(--color-brown-50);
   --scrollbar-thumb-bg: var(--color-brown-30);
   --scrollbar-thumb-border: var(--color-brown-70);
   --scrollbar-thumb-hover-bg: var(--color-brown-50);
@@ -39,7 +39,7 @@ html {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0 1px var(--scrollbar-border);
+  box-shadow: 0 0 0 1px var(--scrollbar-border);
 }
  
 /* Handle */

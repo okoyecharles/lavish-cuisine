@@ -5,7 +5,6 @@ import { useNavigate, useOutlet } from "react-router-dom";
 import { toSnakeCase } from "../utils/utils";
 import { fetchIngredients } from "../redux/features/ingredients/ingredientsSlice";
 import { Ingredient } from "../redux/features/ingredients/types";
-import { clearMeals } from "../redux/features/meals/mealsSlice";
 
 const Ingredients = () => {
   const outlet = useOutlet();

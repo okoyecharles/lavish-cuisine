@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { AiFillYoutube } from "react-icons/ai";
@@ -44,10 +43,6 @@ const StyledTableRow = styled(TableRow)(() => ({
     border: 0,
   },
 }));
-
-function createData(ingredient: string, measurement: string) {
-  return { ingredient, measurement };
-}
 
 const Meal: React.FC = () => {
   const params = useParams();
@@ -131,12 +126,12 @@ const Meal: React.FC = () => {
               <h2>Still Confused?</h2>
               <div>
                 {meal.data.youtube && (
-                  <a href={meal.data.youtube} target="_blank" rel="norefferrer">
+                  <a href={meal.data.youtube} target="_blank" rel="noreferrer">
                     <AiFillYoutube />
                   </a>
                 )}
                 {meal.data.cookbook && (
-                  <a href={meal.data.cookbook} target="_blank" rel="norefferrer">
+                  <a href={meal.data.cookbook} target="_blank" rel="noreferrer">
                     <BsJournalBookmark />
                   </a>
                 )}

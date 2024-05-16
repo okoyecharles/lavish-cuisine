@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import Nav from "./components/Nav";
 import Ingredients from "./components/Ingredients";
