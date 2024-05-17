@@ -5,8 +5,7 @@
 }
 
 .home {
-  padding-block: 2rem;
-  padding-inline: 1rem;
+  padding: 2rem 1rem;
   width: 100%;
   max-width: var(--max-content-width);
 
@@ -38,7 +37,7 @@
   --size: 192px;
 
   border-radius: .25rem;
-  box-shadow: 0 0 0 .5px var(--color-brown);
+  box-shadow: 0 0 0 1px var(--color-brown-70);
   background-color: var(--color-milk);
   overflow: hidden;
 }
@@ -182,7 +181,7 @@
 
 @media screen and (min-width: 768px) {
   .home {
-    padding-inline: 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   .home__row {
