@@ -3,53 +3,17 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { AiFillYoutube } from "react-icons/ai";
 import { BsJournalBookmark } from "react-icons/bs";
-import { GiChefToque } from "react-icons/gi";
 import "../styles/Meal.css";
-import { isValidString } from "../utils/utils";
+import { formatCount, isValidString, splitSteps, toSnakeCase } from "../utils/utils";
 import { TailSpin } from "react-loader-spinner";
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { fetchDetailedMeal } from "../redux/features/meals/mealSlice";
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: "#6f4b0c",
-    fontWeight: "900",
-    textTransform: "uppercase",
-    fontSize: "1.05em",
-    border: "0",
-    padding: ".5em 1em",
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: "1em",
-    border: "0",
-    padding: ".5em 1em",
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(() => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: "#c0841d14",
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 
 const Meal: React.FC = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
   const meal = useAppSelector((state) => state.meal);
+  const preparationSteps = splitSteps(meal.data?.instructions || "");
 
-  const [showFullInstructions, setShowFullInstructions] = useState<boolean>(false);
   useEffect(() => {
     dispatch(fetchDetailedMeal({ name: params.meal! }));
   }, []);
@@ -58,86 +22,100 @@ const Meal: React.FC = () => {
     <main className="meal">
       {meal.status === "pending" ? (
         <TailSpin
-          height="150"
-          width="150"
-          color="#c0841d"
+          height="128"
+          width="128"
+          color="var(--color-brown-30)"
           ariaLabel="tail-spin-loading"
-          radius="2"
           wrapperStyle={{
-            marginInline: "auto",
-            marginTop: "5em",
-            opacity: "0.5",
+            marginTop: "25vh",
+            display: "grid",
+            placeItems: "center",
           }}
-          wrapperClass=""
           visible={true}
         />
       ) : meal.data ? (
         <>
-          <header className="meal__header">
-            <h1>{meal.data.name}</h1>
-            <span>{meal.data.area}</span>
-          </header>
-          <section className="meal__measurements">
-            <h2>Requirements</h2>
-            <div>
-              <TableContainer component={Paper} className="meal__measurementsContainer">
-                <Table sx={{ minWidth: 100 }} aria-label="measurements table">
-                  <TableHead>
-                    <TableRow>
-                      <StyledTableCell>Ingredient</StyledTableCell>
-                      <StyledTableCell>Measurement</StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {meal.data.ingredients_measurements.map(
-                      ([ingredient, measurement]) => (
-                        <StyledTableRow key={ingredient}>
-                          <StyledTableCell component="th" scope="row">
-                            {ingredient}
-                          </StyledTableCell>
-                          <StyledTableCell>{measurement}</StyledTableCell>
-                        </StyledTableRow>
-                      )
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </div>
-          </section>
-          <section className="meal__instructions">
-            <h2>
-              Preparation <GiChefToque />
-            </h2>
-            <div className="meal__instructionsContainer">
-              {!showFullInstructions
-                ? meal.data.instructions?.substring(0, 500)
-                : meal.data.instructions}
-              <div
-                onClick={() => {
-                  setShowFullInstructions((prevState) => !prevState);
-                }}
-              >
-                {showFullInstructions ? "show less" : "show more..."}
-              </div>
-            </div>
-          </section>
-          {(isValidString(meal.data.youtube) || isValidString(meal.data.cookbook)) && (
-            <section className="meal__help">
-              <h2>Still Confused?</h2>
-              <div>
-                {meal.data.youtube && (
-                  <a href={meal.data.youtube} target="_blank" rel="noreferrer">
-                    <AiFillYoutube />
-                  </a>
-                )}
-                {meal.data.cookbook && (
-                  <a href={meal.data.cookbook} target="_blank" rel="noreferrer">
-                    <BsJournalBookmark />
-                  </a>
-                )}
-              </div>
+          <div className="meal__header-container">
+            <header className="meal__header">
+              <h2>{meal.data.name}</h2>
+              <section className="meal__info">
+                <p>
+                  <img
+                    src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjl6ejVwZHY1OG40YWZ1ZG55cm85YXE0dzl3d2J3Y3d1eWJuMXkzcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dlh7c1N7NqrH1ns4Yf/giphy.gif"
+                    alt="earth"
+                    height={48}
+                    width={48}
+                  />
+                  <span>{meal.data.area}</span>
+                </p>
+                <p>
+                  <img
+                    src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2t2aHp1cndndDRweGV4NDR5OTkzejNtbWgyejNhaXB2bmE0NG84OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MohQPvwHM9XPc6b9kw/giphy.gif"
+                    alt="pizza"
+                    height={48}
+                    width={48}
+                  />
+                  <span>{meal.data.category}</span>
+                </p>
+                <div className="meal__header-image">
+                  <img src={meal.data.thumbnail} alt={toSnakeCase(meal.data.name)} />
+                </div>
+              </section>
+            </header>
+          </div>
+
+          <div className="meal__content">
+            <section className="meal__measurements">
+              <h3>Requirements</h3>
+              <table>
+                <tr>
+                  <th>Ingredient</th>
+                  <th>Measurement</th>
+                </tr>
+                {meal.data.ingredients_measurements.map(([ingredient, measurement]) => (
+                  <tr>
+                    <td>{ingredient}</td>
+                    <td>{measurement}</td>
+                  </tr>
+                ))}
+              </table>
             </section>
-          )}
+
+            <section className="meal__instructions">
+              <h3>
+                Preparation ({formatCount(preparationSteps.length, "step", "steps")})
+              </h3>
+              <ul>
+                {preparationSteps.map((step) => (
+                  <li>{step}</li>
+                ))}
+              </ul>
+            </section>
+
+            {(isValidString(meal.data.youtube) || isValidString(meal.data.cookbook)) && (
+              <section className="meal__help">
+                <h3>Sources</h3>
+                <ul>
+                  {meal.data.youtube && (
+                    <li>
+                      <a href={meal.data.youtube} target="_blank" rel="noreferrer">
+                        <AiFillYoutube />
+                        <span>Youtube</span>
+                      </a>
+                    </li>
+                  )}
+                  {meal.data.cookbook && (
+                    <li>
+                      <a href={meal.data.cookbook} target="_blank" rel="noreferrer">
+                        <BsJournalBookmark />
+                        <span>Cookbook</span>
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </section>
+            )}
+          </div>
         </>
       ) : null}
     </main>

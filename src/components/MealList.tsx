@@ -103,8 +103,16 @@ const MealList = () => {
             <li className="meal__list-error">
               <MdOutlineNoMeals />
               <p className="mealList__errorMessage">
-                Oops... Can't find a meal made with{" "}
-                {reverseSnakeCase(params.ingredient || "")}
+                {params.ingredient ? (
+                  <>
+                    Oops... Can't find a meal made with{" "}
+                    {reverseSnakeCase(params.ingredient)}
+                  </>
+                ) : params.area ? (
+                  <>Looks like we have no meals made in "{reverseSnakeCase(params.area)}" areas</>
+                ) : (
+                  <>There was an error fetching your meals</>
+                )}
               </p>
             </li>
           )}

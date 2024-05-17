@@ -30,7 +30,8 @@ const MealCard: React.FC<Props> = ({ meal }) => {
         >
           <FaArrowRightLong />
         </button>
-        <img src={`${meal.thumbnail}/preview`} alt={toSnakeCase(meal.name)} />
+        <img src={`${meal.thumbnail}
+        `} alt={toSnakeCase(meal.name)} />
       </div>
     </li>
   );

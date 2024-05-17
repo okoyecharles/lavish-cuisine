@@ -23,5 +23,9 @@ export const getCountryCode = (countryName: string) => {
   return countryCodeMap[countryName];
 }
 
+export const splitSteps: (text: string) => Array<string> = (text) => {
+  return text.split("\n");
+}
+
 export const isValidString = (string: string | null) =>
   string !== null && /[A-Za-z\d]/g.test(string)

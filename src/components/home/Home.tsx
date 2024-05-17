@@ -1,15 +1,10 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import HomeRow from "./HomeRow";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "../../hooks/redux";
 import "../../styles/Home.css";
-import {
-  fetchCategories,
-  fetchMealsByCategory,
-} from "../../redux/features/categories/categoriesSlice";
 import { formatCount } from "../../utils/utils";
 
 const Home: React.FC = () => {
-  const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.categories);
   const stats = useMemo(() => {
     const statsMap = {
@@ -21,25 +16,6 @@ const Home: React.FC = () => {
       statsMap.mealCount += category.meals.length;
     });
     return statsMap;
-  }, [categories.data]);
-
-  useEffect(() => {
-    if (categories.status.value !== "fulfilled") {
-      dispatch(fetchCategories());
-    }
-  }, []);
-
-  useEffect(() => {
-    // fetch meals for each category
-    if (categories.data.length && categories.status.value !== "fulfilled") {
-      categories.data.forEach((category, index) => {
-        // fetch every 5ms
-        setTimeout(
-          () => dispatch(fetchMealsByCategory({ filterValue: category.category.name })),
-          25
-        );
-      });
-    }
   }, [categories.data]);
 
   return (
