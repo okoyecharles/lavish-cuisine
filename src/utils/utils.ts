@@ -1,60 +1,31 @@
-import { Meal, MealT } from "../components/Models";
-
-export const formatString = (string: string) =>
+export const toSnakeCase = (string: string) =>
   string.toLowerCase().replace(/\s/g, '_');
+
+export const reverseSnakeCase = (string: string) => {
+  return string.replace(/_/g, " ");
+}
+
+export const formatCount = (count: number, singular: string, plural: string) => {
+  const word = count === 1 ? singular : plural;
+  return `${count} ${word}`;
+}
+
+export const getCountryCode = (countryName: string) => {
+  // https://flagcdn.com/w80/${code}.png
+  const countryCodeMap: Record<string, string> = {
+    "American": "US", "British": "GB", "Canadian": "CA", "Chinese": "CN", "Croatian": "HR",
+    "Dutch": "NL", "Egyptian": "EG", "Filipino": "PH", "French": "FR", "Greek": "GR",
+    "Indian": "IN", "Irish": "IE", "Italian": "IT", "Jamaican": "JM", "Japanese": "JP",
+    "Kenyan": "KE", "Malaysian": "MY", "Mexican": "MX", "Moroccan": "MA", "Polish": "PL",
+    "Portuguese": "PT", "Russian": "RU", "Spanish": "ES", "Thai": "TH", "Tunisian": "TN",
+    "Turkish": "TR", "Vietnamese": "VN",
+  }
+  return countryCodeMap[countryName];
+}
+
+export const splitSteps: (text: string) => Array<string> = (text) => {
+  return text.split("\n");
+}
 
 export const isValidString = (string: string | null) =>
   string !== null && /[A-Za-z\d]/g.test(string)
-
-export const getIngredientMaterials = (object: MealT) => {
-  // Convert object to entries..
-  let result: any[] = [];
-  const arr = Object.entries(object);
-
-  arr.forEach((entry: [string, string]) => {
-    if (entry[0].startsWith('strIngredient') && isValidString(entry[1])) {
-      let pair = new Array(2);
-      pair[0] = entry[1];
-      result.push(pair);
-    } else if (entry[0].startsWith('strMeasure') && isValidString(entry[1])) {
-      const position = parseInt(entry[0].replace('strMeasure', '')) - 1;
-      result[position][1] = entry[1];
-    }
-  })
-
-  return result;
-}
-
-
-/**
-
-object =>
-  {
-    strIngredient1: "flour",
-    strIngredient2: "soda",
-    strMeasure1: "1 cup",
-    strMeasure2: "2 spoons"
-  }
-
-entries => 
-[
-  ["strIngredient1", "flour"],
-  ["strIngredient2", "soda"],
-  ["strMeasure1", "1 cup"],
-  ["strMeasure2", "2 spoons"]
-]
- 👆
-... forEach entry
-
-result = 
-[
-  ["flour", "1 cup"],
-  ["soda", "2 spoons"],
-]
-;
-
-strMeasure1
-result[0].push("1 cup")
-let position = 0
-
-**/

@@ -1,58 +1,77 @@
 .ingredients {
+  max-width: var(--max-content-width);
+  min-height: calc(100vh - var(--nav-height));
   display: flex;
-  min-height: 95vh;
-  max-width: 125em;
   margin-inline: auto;
 }
 
 .ingredients__col1 {
-  background: #c0841d;
-  padding: 2em 1em;
+  background: white;
+  padding: 2rem 1rem;
+
+  header input {
+    width: 100%;
+    background-color: var(--color-milk);
+    color: var(--color-brown);
+    box-shadow: 0 0 0 1px var(--color-brown-10);
+    border-radius: .25rem;
+    font-size: 14px;
+    padding: .5rem 1rem;
+    margin-bottom: 1.5rem;
+
+    border: none;
+    outline: none;
+    transition: box-shadow 250ms ease;
+  }
+
+  header input:hover {
+    box-shadow: 0 0 0 1px var(--color-brown-30);
+  }
+  header input:focus {
+    box-shadow: 0 0 0 1px var(--color-brown), 0 0 0 5px var(--color-brown-10);
+  }
+  header input::placeholder {
+    color: var(--color-brown);
+  }
 }
 
+.ingredients__container {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
 
-.ingredients__header > input {
-  width: 100%;
-  padding: .5em 1em;
-  margin-bottom: 1.5em;
-  background: rgba(255, 255, 255, 0.484);
-  box-shadow: 0 0 .5em 0 #906213;
-  border-radius: 1em;
-  border: none;
-  outline: none;
-}
+  p {
+    margin-inline: auto;
+    color: var(--color-brown);
+  }
 
-.ingredients__header > input:focus {
-  box-shadow: 0 0 .5em #906213, inset 0 0 0 .1em rgba(255, 255, 255, 0.5);
-}
+  .ingredient {
+    background-color: var(--color-brown);
+    color: var(--color-milk);
+    border-radius: 16px;
+    padding: .25rem 1rem;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform 100ms ease;
+  }
 
-.ingredients__header > input::placeholder { color: #937645; }
-.ingredients__header > input:-ms-input-placeholder { color: #937645; }
-.ingredients__header > input::-webkit-input-placeholder { color: #937645; }
-
-.ingredient {
-  background: #d3a96a;
-  box-shadow: 0 0 0.25em #906213;
-  padding: .25em .5em;
-  border-radius: .35em;
-  transition: 
-  transform .25s ease,
-  transform-origin .2s .2s ease
-  ;
-  cursor: pointer;
-}
-
-.ingredient:hover {
-  transform: scale(1.2);
-  transform-origin: bottom;
+  .ingredient:hover {
+    transform: scale(1.05);
+  }
 }
 
 .ingredients__col2 {
-  padding:  2em 1em;
-  background: rgb(244, 244, 244);
+  border-left: 1px solid var(--color-brown-30);
+  background-color: var(--color-milk);
+
+  > p {
+    padding: 2rem 1rem;
+    color: var(--color-brown);
+    text-align: center;
+    width: 100%;
+  }
 }
 
-.ingredients__col2 h2 {
-  font-weight: 300;
-  font-size: 1.25em;
+.ingredients__col1, .ingredients__col2 {
+  flex: 1;
 }
