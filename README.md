@@ -1,58 +1,22 @@
 <a name="readme-top"></a>
 <!-- PROJECT LOGO -->
-<br />
 <div align="center">
-  <a href="https://github.com/OkoyeCharles/lavish-cuisine">
-    <img src="https://user-images.githubusercontent.com/102174805/188913471-355d1919-6e3d-40d9-9dfe-e6cb82dbb5f1.png" alt="lavish-cuisine" width="100">
+  <a href="https://lavish-cuisine.web.app">
+    <img src="https://lavish-cuisine.web.app/assets/logo-large.png" alt="lavish-cuisine" height="64">
   </a>
-
 
   <h2 align="center">Lavish Cuisine</h2>
 
   <h4 align="center">  
-    <br />
     <a href="https://lavish-cuisine.web.app/" target="_blank" rel="noreferrer noopener" >View Live</a>
     ·
     <a href="https://github.com/OkoyeCharles/lavish-cuisine/issues" target="_blank">Report Bug</a>
-    ·
-    <a href="https://github.com/OkoyeCharles/lavish-cuisine/issues" target="_blank">Request Feature</a>
   </h4>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-        <li><a href="#view-live">View Live</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#clone-locally">Clone Locally</a></li>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#start-local-server">Start-local-server</a></li>
-      </ul>
-    </li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
-## About The Project
 
-A meal-based website that gives you all the information you need about your favourite meals. built with react-typescript & redux.
-
-<img width="1302" alt="lavish-cuisine-preview" src="https://user-images.githubusercontent.com/102174805/188918931-7caa4ad4-6878-473a-acdd-6639f8a65d66.png">
+A cuisine-themed website where you can search for your favorite meals and ingredients.. built with react, typescript, and redux.
 
 **Core Functionalities:**
 * Displays meals by category.
@@ -137,10 +101,9 @@ This project is distributed under the MIT License. [Click here for more informat
 ## Contact
 ### 👤 Okoye Charles
 
-[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/charles-k-okoye/) 
-[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/okoyecharles_) 
-[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/OkoyeCharles/) 
-[![AngelList](https://img.shields.io/badge/AngelList-%23D4D4D4.svg?style=for-the-badge&logo=AngelList&logoColor=black)](https://angel.co/u/charles-k-okoye) 
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/okoyecharles/) 
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/okoyecharlesk) 
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/okoyecharles/) 
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:okoyecharles509@gmail.com)
 
 ### 👤 Ernest Anyewe Adonu
