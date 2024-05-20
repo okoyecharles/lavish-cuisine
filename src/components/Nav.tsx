@@ -11,7 +11,8 @@ const Nav: React.FC = () => {
     <div className="nav__container">
       <header>
         <div className="nav__logo" onClick={() => navigate("/")}>
-          <img src={'/assets/logo.png'} alt="Logo" />
+          <img src={'/assets/logo-large.png'} className="mobile-hidden" alt="Logo" />
+          <img src={'/assets/logo.png'} className="desktop-hidden" alt="Logo" />
         </div>
         <button
           className="nav__open desktop-hidden"

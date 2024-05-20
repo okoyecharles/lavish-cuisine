@@ -36,6 +36,7 @@ footer {
     .footer__content {
       display: grid;
       place-items: center;
+      gap: .5ch;
     }
   }
 }
