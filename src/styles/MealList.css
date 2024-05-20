@@ -2,6 +2,7 @@
   display: grid;
   place-items: center;
   width: 100%;
+  min-height: calc(100vh - var(--nav-height));
 }
 
 .meal__list {

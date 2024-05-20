@@ -8,6 +8,7 @@
   padding: 2rem 1rem;
   width: 100%;
   max-width: var(--max-content-width);
+  min-height: calc(100vh - var(--nav-height));
 
   display: grid;
   gap: 2rem;
@@ -17,6 +18,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  height: fit-content;
 
   p {
     display: flex;

@@ -1,5 +1,6 @@
 .meal {
   padding-bottom: 3rem;
+  min-height: calc(100vh - var(--nav-height));
 }
 
 .meal__header-container {
