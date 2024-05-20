@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import "../styles/Areas.css";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import "../../styles/Areas.css";
 import { useNavigate } from "react-router-dom";
-import { fetchAreas } from "../redux/features/areas/areasSlice";
-import { formatCount, getCountryCode, toSnakeCase } from "../utils/utils";
+import { fetchAreas } from "../../redux/features/areas/areasSlice";
+import { formatCount, getCountryCode, toSnakeCase } from "../../utils/utils";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const Areas: React.FC = () => {

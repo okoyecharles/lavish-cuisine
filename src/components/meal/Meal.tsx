@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { AiFillYoutube } from "react-icons/ai";
 import { BsJournalBookmark } from "react-icons/bs";
-import "../styles/Meal.css";
-import { formatCount, isValidString, splitSteps, toSnakeCase } from "../utils/utils";
+import "../../styles/Meal.css";
+import { formatCount, isValidString, splitSteps, toSnakeCase } from "../../utils/utils";
 import { TailSpin } from "react-loader-spinner";
-import { fetchDetailedMeal } from "../redux/features/meals/mealSlice";
+import { fetchDetailedMeal } from "../../redux/features/meals/mealSlice";
 
 const Meal: React.FC = () => {
   const params = useParams();

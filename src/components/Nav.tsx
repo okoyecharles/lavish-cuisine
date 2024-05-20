@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Logo from "../images/Logo.png";
 import { VscMenu } from "react-icons/vsc";
 import { GrClose } from "react-icons/gr";
 import "../styles/Nav.css";
@@ -12,7 +11,7 @@ const Nav: React.FC = () => {
     <div className="nav__container">
       <header>
         <div className="nav__logo" onClick={() => navigate("/")}>
-          <img src={Logo} alt="Logo" />
+          <img src={'/assets/logo.png'} alt="Logo" />
         </div>
         <button
           className="nav__open desktop-hidden"

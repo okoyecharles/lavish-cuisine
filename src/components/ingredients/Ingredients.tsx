@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import "../styles/Ingredients.css";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import "../../styles/Ingredients.css";
 import { useNavigate, useOutlet } from "react-router-dom";
-import { toSnakeCase } from "../utils/utils";
-import { fetchIngredients } from "../redux/features/ingredients/ingredientsSlice";
-import { Ingredient } from "../redux/features/ingredients/types";
+import { toSnakeCase } from "../../utils/utils";
+import { fetchIngredients } from "../../redux/features/ingredients/ingredientsSlice";
+import { Ingredient } from "../../redux/features/ingredients/types";
 
 const Ingredients = () => {
   const outlet = useOutlet();

@@ -1,15 +1,15 @@
 import { useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import "../styles/MealList.css";
-import { formatCount, reverseSnakeCase, toSnakeCase } from "../utils/utils";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import "../../styles/MealList.css";
+import { formatCount, reverseSnakeCase, toSnakeCase } from "../../utils/utils";
 import { TailSpin } from "react-loader-spinner";
 import {
   clearMeals,
   fetchMealsByArea,
   fetchMealsByIngredient,
-} from "../redux/features/meals/mealsSlice";
-import { clearMeal } from "../redux/features/meals/mealSlice";
+} from "../../redux/features/meals/mealsSlice";
+import { clearMeal } from "../../redux/features/meals/mealSlice";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineNoMeals } from "react-icons/md";
 

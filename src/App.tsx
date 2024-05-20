@@ -2,14 +2,18 @@ import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import Nav from "./components/Nav";
-import Ingredients from "./components/Ingredients";
-import Areas from "./components/Areas";
-import MealList from "./components/MealList";
-import Meal from "./components/Meal";
+import Ingredients from "./components/ingredients/Ingredients";
+import Areas from "./components/areas/Areas";
+import MealList from "./components/meals/MealList";
+import Meal from "./components/meal/Meal";
 import PageNotFound from "./components/PageNotFound";
 import useMediaWidth from "./hooks/useMediaWidth";
 import { useAppDispatch, useAppSelector } from "./hooks/redux";
-import { fetchCategories, fetchMealsByCategory } from "./redux/features/categories/categoriesSlice";
+import {
+  fetchCategories,
+  fetchMealsByCategory,
+} from "./redux/features/categories/categoriesSlice";
+import Footer from "./components/footer/Footer";
 
 const App: React.FC = () => {
   const mediaWidth = useMediaWidth();
@@ -55,6 +59,7 @@ const App: React.FC = () => {
         <Route path="/meal/:meal" element={<Meal />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 };
